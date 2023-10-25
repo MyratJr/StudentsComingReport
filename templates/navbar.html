@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'dist/css/main.css' %}">
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'dist/css/cover.css' %}" rel="stylesheet">
+        <link rel="icon" href="{% static 'brand/islam.png' %}" />
+        <title>Enter in with barcode</title>
+    </head>
+    <style>
+        thead tr {
+            color:black;
+          }
+          
+          tbody tr:hover {
+            background-color: #bedcfc;
+          }
+    </style>
+    <style>
+          .tool {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px black;
+          }
+          
+          .tool .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color:rgb(3, 139, 3);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            top: -5px;
+            left: -260%;
+          }
+          
+          .tool:hover .tooltiptext {
+            visibility: visible;
+          }
+    </style>
+    <body>
+        <header style="background-color:rgb(29, 108, 255);position:sticky;height:10vh">
+            <img src="{% static 'brand/logo.png' %}" style="width:4%;margin-left:10px;"><h5 style="font-size:3vh;margin:10px;color:white">IŞGÄRLERIŇ GIRIŞ WE ÇYKYŞ TERTIBI</h5>
+            <nav style="margin-left:50vw ;" class="nav nav-masthead justify-content-center float-md-end">
+                {% if user.is_authenticated %}
+                    {% if kelle %}<a class="nav-link fw-bold py-1 px-0" style="color:white;font-size:2.2vh;margin-top:1vh;">Baş sahypa</a>{% else %}<a class="nav-link fw-bold py-1 px-0" style="color:white;font-size:2.2vh;margin-top:1vh;" href="{% url 'home' %}">Baş sahypa</a>{% endif %}
+                    <a class="nav-link fw-bold py-1 px-0" style="color:white;font-size:2.2vh;margin-top:1vh" href="{% url 'logging_out' %}">Çykmak</a>
+                    {% if not seat %}<div class="tool" style="margin-left:1vw;"><a type="button" href="{% url 'change_login' %}"><img src="{% static 'brand/setting.png' %}" style="width:2vw;height:4vh;margin-top:1vh"></a>  <span style="width:8vw;margin-top:-1.7vh" class="tooltiptext">Parol çalyşmak</span></div>{% endif %}
+                {% endif %}
+            </nav>
+        </header>
+        {% include 'js_script.html' %}
+    </body>
+</html>

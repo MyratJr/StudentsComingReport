@@ -1,0 +1,34 @@
+{% load static %}
+{% static "brand" as BaseUrl %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.104.2">
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'dist/css/reponse.css' %}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'dist/css/datatable.css' %}">
+    </head>
+    {% include 'navbar.html' %}
+    {% include 'sidebar.html' %}
+    <body>
+    <div class="obshi">
+            <h4 class="wezipe">Aktiwlik boýunça reýting
+            </h4>
+            <ul class="border-top my-2"></ul>
+            <table id="My_table" class="table font bg-white">
+            <thead>
+              <tr>
+                <th scope="col">T/B</th>
+                <th scope="col">Ady</th>
+                <th scope="col">Wezipe</th>
+                <th>Işde wagty</th>
+              </tr>
+            </thead>
+            <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'active_table' %}" hx-target="this">
+            </tbody>
+    </body>
+</html>

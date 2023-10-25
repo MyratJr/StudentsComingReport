@@ -1,0 +1,111 @@
+{% load static %}
+{% static "brand" as BaseUrl %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.104.2">
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'dist/css/reponse.css' %}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'dist/css/datatable.css' %}">
+
+        <span id='spn'>
+        </span>
+
+    </head>
+    {% include 'navbar.html' %}
+    {% include 'sidebar.html' %}
+    <body>
+    <div class="obshi">
+            <h4 class="wezipe">Sanaw</h4>
+            <ul class="border-top my-2"></ul>
+            <table id="My_table" class="table font">
+            <thead>
+              <tr>
+                <th scope="col">T/B</th>
+                <th scope="col">Görnüş</th>
+                <th scope="col">Sany</th>
+                <!-- <th>Işde wagty</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="width: 20%;" scope="row">1</td>
+                <td style="width: 40%;" scope="row">Işgärler</td>
+                <td scope="row">{{q}}</td>
+              </tr>
+              <tr>
+                <td scope="row">2</td>
+                <td scope="row">Wezipeler</td>
+                <td scope="row">{{q1}}</td>
+              </tr>
+              <tr>
+                <td scope="row">3</td>
+                <td scope="row">Kurslar</td>
+                <td scope="row">{{q2}}</td>
+              </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="obshi">
+            <h4 class="wezipe">Işgärleriň sanawy</h4>
+            <ul class="border-top my-2"></ul>
+            <table id="My_table1" class="table font">
+            <thead>
+              <tr>
+                <th scope="col">T/B</th>
+                <th scope="col">Wezipe</th>
+                <th scope="col">Sany</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for u in wezipeler %}
+              <tr>
+                <td style="width: 20%;" scope="row">{{forloop.counter}}</td>
+                <td style="width: 40%;" scope="row">{{u.Wezipe_at}}</td>
+                <td scope="row">{{u.san}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <div class="obshi">
+            <h4 class="wezipe">Diňleýjileriň sanawy</h4>
+            <ul class="border-top my-2"></ul>
+            <table id="My_table2" class="table font">
+            <thead>
+              <tr>
+                <th scope="col">T/B</th>
+                <th scope="col">Kurslar</th>
+                <th scope="col">Sany</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for u in kurslar %}
+              <tr>
+                <td style="width: 20%;" scope="row">{{forloop.counter}}</td>
+                <td style="width: 40%;" scope="row">{{u.Kurs_at}}</td>
+                <td scope="row">{{u.san}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('#My_table').DataTable({
+              retrieve: true,
+            });
+            $('#My_table1').DataTable({
+              retrieve: true,
+            });
+            $('#My_table2').DataTable({
+              retrieve: true,
+            });
+          });
+      </script>
+    </body>
+</html>

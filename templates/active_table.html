@@ -1,0 +1,17 @@
+{% load static %}
+{% for i in Ishgarler %}
+<tr>
+  <td scope="row">{{ forloop.counter }}</td>
+  <td scope="row">{{i.at}}</td>
+  <td scope="row">{{i.wezipe}}</td>
+  <td scope="row">{{i.activesagat}} sagat {{i.activeminut}} minut</td>
+</tr>
+{% endfor %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+      });
+    });
+</script>

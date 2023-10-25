@@ -1,0 +1,17 @@
+html {
+    display:block;
+    flex-direction: column;
+    align-items: center;
+    /* font-family: Arial, sans-serif; */
+  }
+/* form {
+    background: white;
+    border-radius: 8px;
+    padding: 2em;
+    padding-bottom: 1em;
+    box-shadow: 1px 1px 4px 1px rgb(112, 112, 112);
+    margin-bottom: 2em;
+    margin-top:1em;
+    margin-left: 1em;
+    margin-right:1em ;
+  } */

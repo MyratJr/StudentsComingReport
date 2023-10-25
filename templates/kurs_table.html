@@ -1,0 +1,18 @@
+{% load static %}
+{% for i in kurslar %}
+<tr>
+  <td style="width: 20%;" scope="row">{{forloop.counter}}</td>
+  <td style="width: 30%;" scope="row">{{i.Kurs_at}}</td>
+  <td style="width: 15%;"  scope="row">{{i.okuw_bashlayar}}</td>
+  <td style="width: 32%;" scope="row">{{i.okuw_gutaryar}}</td>
+  <td scope="row"><a type="button" hx-get="{% url 'update' i.id 5 %}" hx-target="#dialog"><img class="image_ara kiciler" src="{% static 'brand/editing.png' %}" ></a></td>
+</tr>
+{% endfor %}
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+        'columnDefs': [{ 'orderable': false, 'targets': [4] }],
+      });
+    });
+</script>

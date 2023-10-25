@@ -1,0 +1,28 @@
+{% load static %}
+{% for i in rugsatlar %}
+<tr>
+  <td style="width: 20%;" scope="row">{{forloop.counter}}</td>
+  <td style="width: 76%;" scope="row">{{i}}</td>
+  {% if not user.id == 5 %}
+  <td scope="row"><a type="button" hx-get="{% url 'update' i.id 3 %}" hx-target="#dialog"><img class="image_ara kiciler" src="{% static 'brand/editing.png' %}" ></a></td>
+  {% endif %}
+</tr>
+{% endfor %}
+{% if not user.id == 5 %}
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+        'columnDefs': [{ 'orderable': false, 'targets': [2] }],
+      });
+    });
+</script>
+{% elif user.id == 5 %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#My_table').DataTable({
+      retrieve: true,
+    });
+  });
+</script>
+{% endif %}

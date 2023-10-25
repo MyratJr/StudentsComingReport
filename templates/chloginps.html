@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <title>Enter in with barcode</title>
+        {% include 'navbar.html' with seat='g' %}
+    </head>
+<style>
+    html {
+        height: 100%;
+      }
+      body {
+        margin:0;
+        padding:0;
+        font-family: sans-serif;
+        background: linear-gradient(#141e30, #243b55);
+      }
+      
+      .login-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,.5);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0,0,0,.6);
+        border-radius: 10px;
+      }
+      
+      .login-box h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+      }
+      
+      .login-box .user-box {
+        position: relative;
+      }
+      .login-box .user-box input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+      }
+      .login-box .user-box label {
+        position: absolute;
+        top:0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: .5s;
+      }
+      
+      .login-box .user-box input:focus ~ label,
+      .login-box .user-box input:valid ~ label {
+        top: -20px;
+        left: 0;
+        color: #03e9f4;
+        font-size: 12px;
+      }
+      
+      .login-box form a {
+        position: relative;
+        display: inline-block;
+        padding: 1px 1px;
+        color: #03e9f4;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px;
+        border-radius: 10px;
+      }
+      
+      .login-box a:hover {
+        background: #03e9f4;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4,
+                    0 0 5px #03e9f4,
+                    0 0 5px #03e9f4,
+                    0 0 5px #03e9f4;
+      }
+      
+      .login-box a span {
+        position: absolute;
+        display: block;
+      }
+      
+      
+</style>
+<h6 style="margin-top:88vh;font-size:1.5vh">Begmyradow Myratgeldi tarapyndan "SANLY MAGLUMATLAR WE OLARY GORAMAGYŇ TEHNOLOGIÝALARY" ylmy-önümçilik merkezinde döredildi.</h6>
+<div class="login-box">
+    <h2>Paroly çalyşmak</h2>
+    <form method="POST" action="{% url 'change_login' %}">
+        {% csrf_token %}
+        {% if tip1 or tip2 %}
+        <div>{% if tip2 %}<a style="margin-top:2vh;margin-left:22vw;position:absolute"><img src="{% static 'brand/loer.png' %}" width="20"></a>{% endif %}
+        <div class="user-box">
+            <input type="password" value="{{oop1}}" name="1" id="one" required="">
+            <label>Häzirki parol</label>
+          </div></div>
+        <div>{% if tip1 %}<a style="margin-top:2vh;margin-left:22vw;position:absolute"><img src="{% static 'brand/loer.png' %}" width="20"></a>{% endif %}
+          <div class="user-box">
+            <input type="password" value="{{oop2}}" name="2" id="two" required="">
+            <label>Täze parol</label>
+          </div></div>
+        <div>{% if tip1 %}<a style="margin-top:2vh;margin-left:22vw;position:absolute"><img src="{% static 'brand/loer.png' %}" width="20"></a>{% endif %}
+          <div class="user-box">
+            <input type="password" value="{{oop3}}" name="3" id="three" required="">
+            <label>Täze paroly gaýtalaň</label>
+          </div></div>
+        {% else %}
+            <div class="user-box">
+                <input type="password" value="{{oop1}}" name="1" id="one" required="">
+                <label>Häzirki parol</label>
+              </div>
+              <div class="user-box">
+                <input type="password" value="{{oop2}}" name="2" id="two" required="">
+                <label>Täze parol</label>
+              </div>
+              <div class="user-box">
+                <input type="password" value="{{oop3}}" name="3" id="three" required="">
+                <label>Täze paroly gaýtalaň</label>
+              </div>
+            {% endif %}
+          <input type="checkbox" onclick="myFunction()"><b style="color:white"> Parollary görkez</b><br>
+   
+<script>
+function myFunction() {
+  var x = document.getElementById("one");
+  var y = document.getElementById("two");
+  var z = document.getElementById("three");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+  if (y.type === "password") {
+    y.type = "text";
+  } else {
+    y.type = "password";
+  }
+  if (z.type === "password") {
+    z.type = "text";
+  } else {
+    z.type = "password";
+  }
+}
+</script>
+<div style="margin-top:5%;">
+      <button class="btn btn-outline-success" type="submit" >Save</button>
+      <button class="btn btn-outline-primary" type="reset" >No change</button>
+</div></form>
+  </div>
+  <script>
+    //variable to check whether the page was refreshed or the page will keep on refreshing every second.
+    var vrefreshed=localStorage.getItem('refreshed');
+    if (typeof vrefreshed === 'undefined')
+        vrefreshed = 0;
+    
+    function time() {
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes();
+        var s = d.getSeconds();
+        if(vrefreshed==0 && ((h==10 && m==00 && s==00) || (h==13 && m==00 && s==00))){
+            localStorage.setItem('refreshed', 1);
+            vrefreshed=1;
+            Swal.fire({
+              title: 'Rugsady gutarjak işgärlere göz aýlaň!',
+              denyButtonText: 'OK',
+            }).then((result) => {
+              location.reload();
+            })
+            
+        }else{
+            localStorage.setItem('refreshed', 0);
+            vrefreshed=0;
+            }
+        }      
+    setInterval(time, 1000);
+    </script>
+    <script
+    src="{% static 'dist/js/autorefresh.js' %}"
+    integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
+    crossorigin='anonymous'></script>
+    <script src="{% static 'dist/js/sweetalert2@11.js' %}"></script>

@@ -1,0 +1,33 @@
+{% load static %}
+{% for i in rugsatlylar %}
+    <tr>
+        <td scope="row">{{ forloop.counter }}</td>
+        <td style="width: 25%;" scope="row">{{i.at}}</td>
+        <td style="width: 15%;" scope="row">{{i.wezipe}}</td>
+        <td scope="row">{{i.each_start}}</td>
+        <td scope="row">{{i.each_end}}</td>
+        <td scope="row"><textarea readonly class="aa">{{i.balnoy_beyan}}</textarea></td>
+        {% if green and user.id != 5 %}
+            <td scope="row"><a type="button" hx-get="{% url 'rugsat' i.pk 0 %}" hx-target="#dialog"><img class="image_ara pnglar" src="{% static 'brand/ill.png' %}"></a></td>
+        {% endif %}
+    </tr>
+{% endfor %}
+{% if green %}
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+        'columnDefs': [{ 'orderable': false, 'targets': [5,6]}],
+      });
+    });
+</script>
+{% else %}
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+        'columnDefs': [{ 'orderable': false, 'targets': [5]}],
+      });
+    });
+</script>
+{% endif %}

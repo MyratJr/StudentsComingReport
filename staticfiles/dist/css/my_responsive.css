@@ -1,0 +1,35 @@
+@media  screen and (max-width: 2100px) {
+.fframe{
+    width:1661px;
+    height:102vh; 
+    margin-top:-180px;
+  }
+  .ttable{
+    width:242px;
+    height:1127px;
+  }
+  .menufont{
+    font-size:130% ;
+  }
+  .tablefont{
+    font-size: 110px;
+  }
+ }
+  @media  screen and (max-width: 1400px) {
+    .fframe{
+      width:1177px;
+      height:580px; 
+      margin-top:-15%;
+    } 
+    .ttable{
+      width:172px; 
+      height:752px;
+    }
+    .menufont{
+      font-size:100% ;
+    }
+    .tablefont{
+        font-size: 180%;
+      }
+
+}

@@ -1,0 +1,23 @@
+{% load static %}
+{% for i in dinleyjiler %}
+<tr>
+  <td scope="row">{{ forloop.counter }}</td>
+  <td style="width: 20%;" scope="row">{{i.at}}</td>
+  <td style="width: 15%;" scope="row">{{i.kurs}}</td>
+  <td scope="row">{{i.okuw_bashlayar}}</td>
+  <td scope="row">{{i.okuw_gutaryar}}</td>
+  <td scope="row">{{i.barkod_san}}</td>
+  <td scope="row"><a type="button" hx-get="{% url 'barkod' i.id 2 %}" hx-target="#dialog"><img class="image_ara pnglar" src="{% static 'brand/barcode.png' %}"></a></td>
+  <td scope="row"><a type="button" hx-get="{% url 'update' i.id 4 %}" hx-target="#dialog"><img class="image_ara kiciler" src="{% static 'brand/editing.png' %}"></a></td>
+  <td scope="row"><a type="button" hx-get="{% url 'delete_item' i.id 4 %}" hx-target="#dialog"><img class="image_ara kiciler" src="{% static 'brand/delete.png' %}"></a></td>              
+</tr>
+{% endfor %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#My_table').DataTable({
+      retrieve: true,
+      'columnDefs': [{ 'orderable': false, 'targets': [3,4,6,7,8] }],
+    });
+  });
+</script>
+    

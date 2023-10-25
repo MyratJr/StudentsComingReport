@@ -1,0 +1,169 @@
+{% if not user.is_authenticated %}
+<script>window.location.replace("{% url 'loginuser' %}")</script>
+{% elif user.is_authenticated %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'dist/css/main.css' %}">
+    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/sidebars.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/my_responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/loading.css' %}" rel="stylesheet">
+    
+  </head>
+  <body>
+    {% if isgarler %}
+    <div class="loader loader--style3" title="2">
+        <button class="btn btn-primary" type="button" disabled>
+          <span class="spinner-border spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+    </div>
+    {% endif %}
+  <div class="flex-shrink-1 p-3 bg-white" style="width: 12%;position:fixed; height:100%;border-right:1px solid lightgrey">
+    <ul class="list-unstyled ps-0">
+      {% if user.id != 3 %}
+      <li class="mb-1">
+        {% if isgarler or wezipelers or rugsatlar %}
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+          Hasaba alyş
+        </button>
+        <div class="collapse menufont show" id="home-collapse">
+        {% else %}
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+            Hasaba alyş
+          </button>
+          <div class="collapse menufont" id="home-collapse">
+        {% endif %}
+           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              {% if not isgarler %}
+                <a href="{% url 'ishgarler' %}" class="link-dark d-inline-flex text-decoration-none rounded">Işgärler</a>
+              {% else %}
+                <a class="link-dark d-inline-flex text-decoration-none rounded">Işgärler</a>
+              {% endif%}
+            </li>
+            <li>
+              {% if not wezipelers %}
+                <a href="{% url 'wezipeler' %}" class="link-dark d-inline-flex text-decoration-none rounded">Wezipeler</a></li>
+              {% else %}
+                <a class="link-dark d-inline-flex text-decoration-none rounded">Wezipeler</a></li>
+              {% endif %}
+            {% if user.id == 1 or user.id == 2 %}<li>
+              {% if not rugsatlar %}
+                <a href="{% url 'rugsatlar' %}" class="link-dark d-inline-flex text-decoration-none rounded">Rugsatlar</a>
+              {% else %}
+                <a class="link-dark d-inline-flex text-decoration-none rounded">Rugsatlar</a>
+              {% endif %}
+            </li>{% endif %}
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        {% if r1 or w1 or g1 or g2 or i or ok %}
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
+          Gatnaşyk
+        </button>
+        <div class="collapse menufont show" id="dashboard-collapse">
+        {% else %}
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          Gatnaşyk
+        </button>
+        <div class="collapse menufont" id="dashboard-collapse">
+        {% endif %}
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>{% if w1 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Wagtynda gelenler</a>{% else %}<a href="{% url 'wagtynda_gelenler' 9 %}" class="link-dark d-inline-flex text-decoration-none rounded">Wagtynda gelenler</a>{% endif %}</li>
+            <li>{% if g1 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Gijä galanlar</a>{% else %}<a href="{% url 'gija_galanlar' 9 %}" class="link-dark d-inline-flex text-decoration-none rounded">Gijä galanlar</a>{% endif %}</li>
+            <li>{% if i %}<a class="link-dark d-inline-flex text-decoration-none rounded">Ir gidenler</a>{% else %}<a href="{% url 'ir_gidenler' 9 %}" class="link-dark d-inline-flex text-decoration-none rounded">Ir gidenler</a>{% endif %}</li>
+            {% if user.id == 1 or user.id == 2 %}<li>{% if r1 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Rugsatlylar</a>{% else %}<a href="{% url 'rugsatlylar' 9 %}" class="link-dark d-inline-flex text-decoration-none rounded">Rugsatlylar</a>{% endif %}</li>{% endif %}
+            <li>{% if g2 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Gelmedikler</a>{% else %}<a href="{% url 'gelmedikler' 9 %}" class="link-dark d-inline-flex text-decoration-none rounded">Gelmedikler</a>{% endif %}</li>
+            <li>{% if ok %}<a class="link-dark d-inline-flex text-decoration-none rounded">Aktiw işgärler</a>{% else %}<a href="{% url 'active' %}" class="link-dark d-inline-flex text-decoration-none rounded">Aktiw işgärler</a>{% endif %}</li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+          Nobatçylyk
+        </button>
+        <div class="collapse menufont" id="orders-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a class="link-dark d-inline-flex text-decoration-none rounded">Item_1</a></li>
+            <li><a class="link-dark d-inline-flex text-decoration-none rounded">Item_2</a></li>
+            <li><a class="link-dark d-inline-flex text-decoration-none rounded">Item_3</a></li>
+            <li><a class="link-dark d-inline-flex text-decoration-none rounded">Item_4</a></li>
+          </ul>
+        </div>
+      </li>
+      {% endif %}
+      {% if user.id == 3 or user.id == 1 %}
+      {% if user.id == 1 %}  
+      <li class="border-top my-3"></li>
+      {% endif %}
+      <li class="mb-1">
+        {% if d7 or d8 or d9 %}
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#orders-collaps" aria-expanded="true">
+          Tölegli okuw
+        </button>
+        <div class="collapse menufont show" id="orders-collaps">
+        {% else %}
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#orders-collaps" aria-expanded="false">
+          Tölegli okuw
+        </button>
+        <div class="collapse menufont" id="orders-collaps">
+        {% endif %}
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>{% if d7 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Diňleýjiler</a>{% else %}<a href="{% url 'dinleyjiler' %}" class="link-dark d-inline-flex text-decoration-none rounded">Diňleýjiler</a>{% endif %}</li>
+            <li>{% if d8 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Kurslar</a>{% else %}<a href="{% url 'kurslar' %}" class="link-dark d-inline-flex text-decoration-none rounded">Kurslar</a>{% endif %}</li>
+            <li>{% if d9 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Gatnaşyk</a>{% else %}<a href="{% url 'gatnasyk1' 9 'all' %}" class="link-dark d-inline-flex text-decoration-none rounded">Gatnaşyk</a>{% endif %}</li>
+          </ul>
+        </div>
+      </li>
+      {% endif %}
+    </ul>
+    </div>
+    <script src="{% static 'dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'dist/js/htmx.min.js' %}"></script>
+    <script src="{% static 'dist/js/dialog.js' %}"></script>
+    <script src="{% static 'dist/js/toast.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.DataTables.min.js' %}"></script>
+    <script>
+      //variable to check whether the page was refreshed or the page will keep on refreshing every second.
+      var vrefreshed=localStorage.getItem('refreshed');
+      if (typeof vrefreshed === 'undefined')
+          vrefreshed = 0;
+      
+      function time() {
+          var d = new Date();
+          var h = d.getHours();
+          var m = d.getMinutes();
+          var s = d.getSeconds();
+          if(vrefreshed==0 && ((h==10 && m==00 && s==00) || (h==15 && m==00 && s==00))){
+              localStorage.setItem('refreshed', 1);
+              vrefreshed=1;
+              Swal.fire({
+                title: 'Rugsady gutarjak işgärlere göz aýlaň!',
+                denyButtonText: 'OK',
+              })
+              
+          }else{
+              localStorage.setItem('refreshed', 0);
+              vrefreshed=0;
+              }
+          }      
+      setInterval(time, 1000);
+      </script>
+      <script
+      src="{% static 'dist/js/autorefresh.js' %}"
+      integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
+      crossorigin='anonymous'></script>
+      <script src="{% static 'dist/js/sweetalert2@11.js' %}"></script>
+      <script src="{% static 'dist/js/gar.js' %}"></script>
+  </body>
+</html>
+{% endif %}

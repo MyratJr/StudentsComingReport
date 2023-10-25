@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'dist/css/logins.css' %}">
+
+    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/css/my_responsive.css' %}" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+{% include 'navbar.html' %}
+<body>
+	<div class="container">
+		<div class="img">
+			<img src="{% static 'brand/main.png' %}" style="width:40vw;margin-left:-100px">
+		</div>
+        {% if user.is_authenticated %}
+        <div class="login-content">
+			<form>
+                {% csrf_token %}
+				<div style="margin-top: -90px;">            
+				<img src="{% static 'brand/profile.png' %}" style="height:20vh;">
+				<h2 class="title" style="font-size:200%;">Bagyşlaň siz içeri girdiňiz.</h2>
+				</div>
+            </form>
+        </div>
+        {% endif %}
+        {% if not user.is_authenticated %}
+		<div class="login-content">
+			<form method="post">
+                {% csrf_token %}            
+				<img src="{% static 'brand/profile.png' %}" style="height:150px">
+				<h2 class="title">Hoş geldiňiz</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="text" placeholder="Ulanyjy at" name="username" class="input">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<input type="password" placeholder="Açar söz" name="password" class="input">
+            	   </div>
+            	</div>
+            	<input type="submit" class="btn btn-primary"  value="Girmek">
+            </form>
+        </div>
+        {% endif %}
+    </div>
+	<script>
+		//variable to check whether the page was refreshed or the page will keep on refreshing every second.
+		var vrefreshed=localStorage.getItem('refreshed');
+		if (typeof vrefreshed === 'undefined')
+			vrefreshed = 0;
+		function time() {
+			var d = new Date();
+			var h = d.getHours();
+			var m = d.getMinutes();
+			var s = d.getSeconds();
+			if(vrefreshed==0 && ((h==10 && m==00 && s==00) || (h==13 && m==00 && s==00))){
+				localStorage.setItem('refreshed', 1);
+				vrefreshed=1;
+				Swal.fire({
+				    title: 'Rugsady gutarjak işgärlere göz aýlaň!',
+				    denyButtonText: 'OK',
+				}).then((result) => {
+				  location.reload();
+				})
+			}else{
+				localStorage.setItem('refreshed', 0);
+				vrefreshed=0;
+				}
+			}      
+		setInterval(time, 1000);
+		</script>
+		<script
+		src="{% static 'dist/js/autorefresh.js' %}"
+		integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
+		crossorigin='anonymous'></script>
+		<script src="{% static 'dist/js/sweetalert2@11.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dist/js/main.js' %} "></script>
+</body>
+</html>

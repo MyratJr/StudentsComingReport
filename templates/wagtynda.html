@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.104.2">
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'dist/css/reponse.css' %}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'dist/css/datatable.css' %}">
+    </head>
+    {% include 'navbar.html' %}
+    {% include 'sidebar.html' %}
+    <body>
+    <div class="obshi">
+            <h4 class="wezipe" style="position:absolute">Wagtynda gelenler</h4>
+            <form method="POST" action="{% url 'wagtynda_gelenler' aaaaa %}" onchange="submit()">
+              {% csrf_token %}
+            <div class="col-md-2 mb-3" style="margin-left: 80%;">
+              <select style="font-size:1.5vw;" class="aa" name="day">
+                <option>{{aaaaa}}</option>
+                {% for i in day_category %}
+                {% if i.day|date:"Y-m-d" != aaaaa|date:"Y-m-d" %}
+                <option>{{i.day|date:"Y-m-d"}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            </form>
+            <ul class="border-top my-2"></ul>
+            <table id="My_table" class="table font bg-white">
+            <thead>
+              <tr>
+                <th scope="col">T/B</th>
+                <th scope="col">Ady</th>
+                <th scope="col">Wezipe</th>
+                <th>Gelen wagty</th>
+                <th>Giden wagty</th>
+              </tr>
+            </thead>
+            <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'wagtynda_gelenler_table' aaaaa %}" hx-target="this">
+            </tbody>     
+        </table>
+        </div>
+    </body>
+</html>

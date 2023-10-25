@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.104.2">
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'dist/css/datatable.css' %}">
+    </head>
+    {% include 'navbar.html' %}
+    {% include 'sidebar.html' %}
+    <body>
+        <div class="obshi">
+        <h4 class="wezipe">Wezipeler
+          {% if user.id == 1 or user.id == 2 %}<button class="btn btn-primary" style="float:right;margin-top:-0.6%"><a type="button" hx-get="{% url 'create' 0 %}" hx-target="#dialog" style="text-decoration:none;color:white">Wezipe girizmek</a></button>{% endif %}</h4>
+        <h6 class="border-top my-2"></h6>
+        <table id="My_table" class="font table bg-white">
+        <thead>
+              <tr>
+                <th scope="col">T/B</th>
+                <th scope="col">Wezipeler</th>
+                <th scope="col">I/b</th>
+                <th scope="col">I/s</th>
+                <th scope="col">A/b</th>
+                <th scope="col">A/s</th>
+                {% if user.id == 1 or user.id == 2 %}
+                <th></th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'wezipe_table' %}" hx-target="this">
+            </tbody>
+          </table>
+        </div>
+          {% include 'js_script.html' %}
+      </body>
+</html>

@@ -1,0 +1,35 @@
+from django.urls import path
+from .views import*
+
+urlpatterns = [
+    path('dinleyjiler',index_dinleyjiler,name="dinleyjiler"),
+    path('dinleyji_list',dinleyji_list, name='dinleyji_list'),
+    path('ishgarler',index_ishgarler,name="ishgarler"),
+    path('ishgarler_list',ishgarler_list, name='ishgarler_list'),
+    path('wezipeler',wezipeler,name='wezipeler'),
+    path('wezipe_table',wezipe_table,name='wezipe_table'),
+    path('rugsatlar',rugsatlar,name='rugsatlar'),
+    path('rugsat_table',rugsat_table,name='rugsat_table'),
+    path('kurslar',kurslar,name='kurslar'),
+    path('kurs_table',kurs_table,name='kurs_table'),
+    path('active',active,name='active'),
+    path('active_table',active_table,name='active_table'),
+    path('home',home,name='home'),
+    path('wagtynda_gelenler/<str:date>',wagtynda_gelenler,name='wagtynda_gelenler'),
+    path('wagtynda_gelenler_table/<str:date>',wagtynda_gelenler_table,name='wagtynda_gelenler_table'),
+    path('gija_galanlar/<str:date>',gija_galanlar,name='gija_galanlar'),
+    path('gija_galanlar_table/<str:date>',gija_galanlar_table,name='gija_galanlar_table'),
+    path('ir_gidenler/<str:date>',ir_gidenler,name='ir_gidenler'),
+    path('ir_gidenler_table/<str:date>',ir_gidenler_table,name='ir_gidenler_table'),
+    path('gelmedikler/<str:date>',gelmedikler,name='gelmedikler'),
+    path('gelmedikler_table/<str:date>',gelmedikler_table,name='gelmedikler_table'),
+    path('rugsatlylar/<str:date>',rugsatlylar,name="rugsatlylar"),
+    path('rugsatlylar_table/<str:date>',rugsatlylar_table,name="rugsatlylar_table"),
+    path('gatnasyk/<str:date>/<str:kurs>',gatnasyk1,name='gatnasyk1'),
+    path('gatnasyk1_table/<str:date>/<str:kurs>',gatnasyk1_table,name='gatnasyk1_table'),
+    path('barkod/<int:pk>/<int:which>',barkod,name='barkod'),
+    path('',hello),
+    path('hello',loginuser,name='loginuser'),
+    path('logout',loguser_out,name='logging_out'),
+    path('change_login',change_login,name='change_login')
+]

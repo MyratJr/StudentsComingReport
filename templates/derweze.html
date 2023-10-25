@@ -1,0 +1,57 @@
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'dist/css/code_getter.css' %}" rel="stylesheet">
+        <link href="{% static 'dist/css/login.css' %}" rel="stylesheet">
+        <title>Barcode_Frontt</title>
+    </head>
+    <body style="background-color:white;">
+      {% if bellik1 %}
+        <h2 class="bellik"><img src="{% static 'brand/success.png' %}" width="4%" style="margin-top:-1%;"> {{bellik1}}</h2>
+      {% elif bellik0 %}
+      <h2 class="bellik"><img src="{% static 'brand/warning.png' %}" width="4%" style="margin-top:-1%;"> {{bellik0}}</h2>
+      {% endif %}
+        <div style="margin-top:-5px;">
+        <form action="maglumat" method="post">
+            {% csrf_token %}
+            <div style="width:40vw;margin-left:30%;margin-top:2%;margin-bottom:-3vh">{{form.barkod}}</div>
+        </form>
+        {% if a %}
+        <div class="container">
+            <div class="tab"></div>
+            <div class="receipt">
+              <div class="sign center">
+                <div class="atsize" style="margin-top:-3%;color:blue">{{a.at}}</div>
+                <div class="paper" style="margin-top:2%;"></div>
+                {% endif %}
+                {% if wagt1 %}
+                <h3 class="wagtsize" style="color:rgb(62, 62, 163);margin-top:4%"><a style="color:green">Giriş wagt: </a>{{wagt1}}</h3>
+                {% endif %}
+                {% if wagt %}
+                <h3 class="wagtsize" style="color:rgb(62, 62, 163);margin-top:-10px"><a style="color:red">Çykyş wagt: </a>{{wagt}}</h3>
+                {% endif %}
+                {% if gic %}
+                <h3 class="wagtsize" style="color:rgb(62, 62, 163);margin-top:20px"><a style="color:red">Wagt: </a>{{gic}}</h3>
+                {% endif %}
+            </div>
+            </div>
+            <div>
+          </div>
+        </div>
+    </body>
+</html>
+  
+  <script>
+    function pay()
+  {
+    $(".receipt").slideUp("slow");
+    $(".paid").slideDown("slow");
+  }
+  
+  </script>

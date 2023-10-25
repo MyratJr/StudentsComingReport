@@ -1,0 +1,80 @@
+{% load static %}
+{% if not movie.balnoy %}
+<form hx-post="{% url 'rugsat' movie.id 6 %}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content editboxes">
+    <div class="modal-header">
+      <h5 class="modal-title"><img src="{% static 'brand/evaluation.png' %}" width="30"><h6 style="margin-left:5px;margin-top:1%;font-size:3vh">&nbsp&nbspIşgäre rugsat bermek</h6></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="form-row" style="display:flex;margin-left:4%;width:23vw;margin-top:3%">
+      <div class="col-md-12 mb-3">
+        <h4 for="validationDefault01" style="color:rgb(63, 63, 63);font-size:2vw">{{movie.at}}</h4>
+      </div>
+      <div class="col-md-12 mb-3" style="margin-left: 8%;">
+        <label for="exampleFormControlSelect1" style="color:blue">Sebäbi</label>
+        <select style="font-size:1.5vw;" class="aa" id="exampleFormControlSelect1" name="rugsat">
+          {% for i in rugsatlar %}
+          <option>{{i.Rugsat_at}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="form-row" style="display:flex;margin-left:4%;width:23vw">
+      <div class="col-md-12 mb-3">
+        <label for="validationDefault01" style="color:blue">Başlangyç sene:</label>
+        <input style="font-size:1.5vw;" type="date" class="form-control" id="validationDefault01" name="wagt1" required>
+      </div>
+      <div class="col-md-12 mb-3" style="margin-left: 8%;">
+        <label for="validationDefault01" style="color:blue">Gutarýan sene:</label>
+        <input style="font-size:1.5vw;" type="date" class="form-control" id="validationDefault01" name="wagt2" required>
+      </div>
+    </div>
+    <div class="form-row" style="display:flex;margin-left:4%;width:23vw;margin-bottom:10%">
+      <div class="col-md-12 mb-3">
+        <textarea style="font-size:1.5vw;resize:none;height:200%;width:130%;margin-left:0%" type="" class="form-control" id="validationDefault01" name="beyan" placeholder="Gysgaça beýan" required></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Ýatda sakla</button>
+    </div>
+  </form>
+  {% else %}
+  <form hx-post="{% url 'rugsat' movie.id 7 %}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content editboxes">
+    <div class="modal-header">
+      <h5 class="modal-title"><img src="{% static 'brand/ill.png' %}" width="30"><h6 style="margin-left:5px;margin-top:1%;font-size:3vh">&nbsp&nbspIşgäre rugsat bermek</h6></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+<div class="form-row" style="display:flex;margin-left:4%;width:23vw;margin-top:3%">
+    <div class="col-md-12 mb-3">
+    <h4 for="validationDefault01" style="color:rgb(63, 63, 63);font-size:2vw">{{movie.at}}</h4>
+    </div>
+    <div class="col-md-12 mb-3" style="margin-left: 8%;">
+    <label for="exampleFormControlSelect1" style="color:blue">Sebäbi</label>
+    <select style="font-size:1.5vw;" class="aa" id="exampleFormControlSelect1" name="rugsat">
+        <option>{{movie.balnoy_gornush}}</option>
+        {% for k in rugsatlar %}
+        <option>{{k.Rugsat_at}}</option>
+        {% endfor %}
+    </select>
+    </div>
+</div>
+<div class="form-row" style="display:flex;margin-left:4%;width:23vw">
+    <div class="col-md-12 mb-3">
+    <label for="validationDefault01" style="color:blue">Başlangyç sene:</label>
+    <input style="font-size:1.5vw;" type="date" class="form-control" id="validationDefault01" name="wagt1" value="{{movie.balnoy_bash|date:'Y-m-d'}}" required>
+    </div>
+    <div class="col-md-12 mb-3" style="margin-left: 8%;">
+    <label for="validationDefault01" style="color:blue">Gutarýan sene:</label>
+    <input style="font-size:1.5vw;" type="date" class="form-control" id="validationDefault01" value="{{movie.balnoy_sony|date:'Y-m-d'}}" name="wagt2" required>
+    </div>
+</div>
+<div class="form-row" style="display:flex;margin-left:4%;width:23vw;margin-bottom:10%">
+    <div class="col-md-12 mb-3">
+    <textarea style="font-size:1.5vw;resize:none;height:200%;width:130%;margin-left:0%" class="form-control" id="validationDefault01" name="beyan" placeholder="Gysgaça beýan" required>{{movie.balnoy_beyan}}</textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <a type="button" hx-get="{% url 'rugsat' movie.id 5 %}" hx-target="#dialog"><input type="button" class="btn btn-danger" value="Rugsatdan boşatmak"></a>
+    <button type="submit" class="btn btn-primary">Ýatda sakla</button>
+</div>
+</form>
+{% endif %}

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'dist/css/bootstrap.min.css' %}" />
+    <link href="{% static 'dist/css/reponse.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/datatable.css' %}">
+
+    <title>My Movie Collection</title>
+  </head>
+  {% include 'navbar.html' %}
+  {% include 'sidebar.html' %}
+  <body>
+    <div class="obshi">
+    <h4 class="wezipe">Diňleýjiler
+      <button class="btn btn-primary" style="float:right;margin-top:-0.6%"><a  type="button" hx-get="{% url 'create' 3 %}" hx-target="#dialog"  style="text-decoration:none;color:white">Diňleýji girizmek</a></button>
+    </h4>
+        <ul class="border-top my-2"></ul>
+        <table id="My_table" class="font table" >
+        <thead>
+          <tr>
+            <th>T/B</th>
+            <th>At</th>
+            <th>Kurs</th>
+            <th>O/B</th>
+            <th>O/S</th>
+            <th>Kody</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'dinleyji_list' %}" hx-target="this">
+        </tbody>
+      </table>
+    </div>
+
+    {% include 'js_script.html' %}
+  </body>
+</html>

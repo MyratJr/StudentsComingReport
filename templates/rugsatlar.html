@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.104.2">
+        <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'dist/css/datatable.css' %}">
+    </head>
+    {% include 'navbar.html' %}
+    {% include 'sidebar.html' %}
+    <body>
+        <div class="obshi">
+        <h4 class="wezipe">Rugsatlar
+          {% if not user.id == 5 %}<button class="btn btn-primary" style="float:right;margin-top:-0.6%"><a  type="button" hx-get="{% url 'create' 2 %}" hx-target="#dialog" style="text-decoration:none;color:white">Rugsat girizmek</a></button>{% endif %}</h4>
+        <h6 class="border-top my-2"></h6>
+        <table class="table font bg-white" id="My_table">
+            <thead>
+              <tr>
+                <th scope="col">T/B</th>
+                <th scope="col">Rugsatlar</th>
+                {% if not user.id == 5 %}
+                <th></th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'rugsat_table' %}" hx-target="this">
+            </tbody>
+          </table>
+        </div>
+            {% include 'js_script.html' %}
+      </body>
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+{% load custom_tags %}
+{% for i in ir_gidenler %}
+<tr>
+  <td scope="row">{{forloop.counter}}</td>
+  <td scope="row">{{i.at}}</td>
+  <td scope="row">{{i.wezipe}}</td>
+  <td scope="row">{{i.gelen_wagty|get_item:date}}
+      {% if i.gelen_wagty|get_item:date > i.is_bashlayar %}
+          <img style="margin-left:1% ;" src="{% static 'brand/gm.png' %}" width="13">
+      {% elif i.gelen_wagty|get_item:date <= i.is_bashlayar %}
+          <img style="margin-left:1% ;" src="{% static 'brand/checkedd.png' %}" width="15">
+      {% endif %}
+  </td>
+  <td>{{i.giden_wagty|get_item:date}}</td>
+</tr>
+{% endfor %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+      });
+    });
+</script>

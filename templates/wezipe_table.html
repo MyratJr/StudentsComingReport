@@ -1,0 +1,32 @@
+{% load static %}
+{% for i in wezipeler %}
+<tr>
+  <td style="width: 15%;" scope="row">{{forloop.counter}}</td>
+  <td style="width: 20%;" scope="row">{{i.Wezipe_at}}</td>
+  <td scope="row">{{i.is_bashlayar}}</td>
+  <td scope="row">{{i.is_gutaryar}}</td>
+  <td scope="row">{{i.obed_bashlayar}}</td>
+  <td sscope="row">{{i.obed_gutaryar}}</td>
+  {% if user.id == 1 or user.id == 2 %}
+  <td scope="row"><a type="button" hx-get="{% url 'update' i.id 2 %}" hx-target="#dialog"><img class="image_ara kiciler" src="{% static 'brand/editing.png' %}" ></a></td>
+  {% endif %}
+</tr>
+{% endfor %}
+{% if user.id == 1 or user.id == 2 %}
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+        'columnDefs': [{ 'orderable': false, 'targets': [6] }],
+      });
+    });
+</script>
+{% else %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#My_table').DataTable({
+      retrieve: true,
+    });
+  });
+</script>
+{% endif %}

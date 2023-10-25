@@ -1,0 +1,54 @@
+{% load static %}
+{% for i in ishgarler %}
+    <tr>
+    <td scope="row">{{ forloop.counter }}</td>
+    <td scope="row">{{i.at}}</td>
+    <td scope="row">{{i.wezipe}}</td>
+    <td scope="row">{{i.is_bashlayar}}</td>
+    <td scope="row">{{i.is_gutaryar}}</td>
+    <td scope="row">{{i.obed_bashlayar}}</td>
+    <td scope="row">{{i.obed_gutaryar}}</td>
+    <td scope="row">{{i.barkod_san}}</td>
+    {% if user.id == 1 or user.id == 2 %}
+    <td scope="row"><a type="button" hx-get="{% url 'barkod' i.id 1 %}" hx-target="#dialog"><img class="image_ara pnglar" src="{% static 'brand/barcode.png' %}"></a></td>
+    {% if i.balnoy %}
+        <td scope="row"><a type="button" hx-get="{% url 'rugsat' i.pk 0 %}" hx-target="#dialog"><img class="image_ara pnglar" src="{% static 'brand/ill.png' %}"></a></td>
+    {% else %}
+        <td scope="row"><a  type="button" hx-get="{% url 'rugsat' i.pk 0 %}" hx-target="#dialog"><img class="image_ara pnglar" src="{% static 'brand/evaluation.png' %}"></a></td>
+    {% endif %}
+    <td scope="row"><a  type="button" hx-get="{% url 'update' i.id 0 %}" hx-target="#dialog"><img class="image_ara kiciler" src="{% static 'brand/editing.png' %}"></a></td>
+    <td scope="row"><a type="button" hx-get="{% url 'delete_item' i.id 5 %}" hx-target="#dialog" ><img class="image_ara kiciler" src="{% static 'brand/delete.png' %}"></a></td>              
+    {% endif %}
+    </tr>
+{% endfor %}
+
+
+<!-- {% if ishgarler.has_previous %}
+<a href="?page=1">&laquo; First</a>
+<a href="?page={{ishgarler.previous_page_number}}">Previous</a>
+{% endif %}
+Page {{ishgarler.number}} of {{ishgarler.paginator.num_pages}}
+{% if ishgarler.has_next %}
+<a href="?page={{ishgarler.next_page_number}}">Next</a>
+<a href="?page={{ishgarler.paginator.num_pages}}">Last&raquo</a>
+{% endif %} -->
+
+{% if user.id == 1 or user.id == 2 %}
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+        'columnDefs': [{ 'orderable': false, 'targets': [8,9,10,11] }],
+      });
+    });
+  </script>
+  {% else %}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#My_table').DataTable({
+        retrieve: true,
+        'columnDefs': [{ 'orderable': false, 'targets': [3,4,5,6] }],
+      });
+    });
+  </script>
+  {% endif %}
