@@ -48,14 +48,9 @@
           }
     </style>
     <body>
-        <header style="background-color:rgb(29, 108, 255);position:sticky;height:10vh">
-            <img src="{% static 'brand/logo.png' %}" style="width:4%;margin-left:10px;"><h5 style="font-size:3vh;margin:10px;color:white">IŞGÄRLERIŇ GIRIŞ WE ÇYKYŞ TERTIBI</h5>
-            <nav style="margin-left:50vw ;" class="nav nav-masthead justify-content-center float-md-end">
-                {% if user.is_authenticated %}
-                    {% if kelle %}<a class="nav-link fw-bold py-1 px-0" style="color:white;font-size:2.2vh;margin-top:1vh;">Baş sahypa</a>{% else %}<a class="nav-link fw-bold py-1 px-0" style="color:white;font-size:2.2vh;margin-top:1vh;" href="{% url 'home' %}">Baş sahypa</a>{% endif %}
-                    <a class="nav-link fw-bold py-1 px-0" style="color:white;font-size:2.2vh;margin-top:1vh" href="{% url 'logging_out' %}">Çykmak</a>
-                    {% if not seat %}<div class="tool" style="margin-left:1vw;"><a type="button" href="{% url 'change_login' %}"><img src="{% static 'brand/setting.png' %}" style="width:2vw;height:4vh;margin-top:1vh"></a>  <span style="width:8vw;margin-top:-1.7vh" class="tooltiptext">Parol çalyşmak</span></div>{% endif %}
-                {% endif %}
+        <header style="background-color:#093936;position:sticky;height:10vh">
+            <h5 style="color:white;margin-left:40vw">Talyplaryň okuwa geliş hasabaty</h5>
+            <nav style="margin-left:50vw;position:absolute" class="nav nav-masthead justify-content-center float-md-end">
             </nav>
         </header>
         {% include 'js_script.html' %}

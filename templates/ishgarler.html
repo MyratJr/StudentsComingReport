@@ -10,12 +10,25 @@
         <link rel="stylesheet" type="text/css" href="{% static 'dist/css/datatable.css' %}">
 
     </head>
+    <style>
+    .obshio {
+    background: white;
+    border-radius: 8px;
+    padding: 2em;
+    padding-bottom: 1em;
+    box-shadow: 1px 1px 4px 1px rgb(112, 112, 112);
+    margin-bottom: 2em;
+    margin-top: 1vw;
+    margin-right: 13%;
+    margin-left: 1em;
+}
+    </style>
     {% include 'navbar.html' %}
     {% include 'sidebar.html' %}
     <body id="refreshet">
-    <div class="obshi">
-<h4 class="wezipe">Işgärler
-            {% if user.id == 1 or user.id == 2 %}<button class="btn btn-primary" style="float:right;margin-top:-0.6%"><a type="button" hx-get="{% url 'create' 1 %}" hx-target="#dialog" style="text-decoration:none;color:white">Işgär girizmek</a></button>{% endif %}</h4>
+    <div class="obshio">
+<h4 class="wezipe">Talyplar
+            {% if user.id == 1 or user.id == 2 %}<button class="btn btn-primary" style="background-color:#093936;float:right;margin-top:-0.6%"><a type="button" hx-get="{% url 'create' 1 %}" hx-target="#dialog" style="text-decoration:none;color:white">Işgär girizmek</a></button>{% endif %}</h4>
             <ul class="border-top my-2"></ul>
             <table id="My_table" class="font table bg-white">
             <thead>
