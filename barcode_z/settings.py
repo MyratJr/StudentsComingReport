@@ -14,23 +14,21 @@ from pathlib import Path
 import os
 from datetime import timedelta
 from re import T
-
+from .config import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_m(^nydq@rxzxp%=k_#$o@jaly2m)@yz!08%!kn&d4iscz7o8@'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['192.168.12.64','127.0.0.1']
-INTERNAL_IPS = ('127.0.0.1', '0.0.0.0', 'localhost')
+ALLOWED_HOSTS =ALLOWED_HOSTS
 
 # Application definition
 
@@ -111,15 +109,15 @@ WSGI_APPLICATION = 'barcode_z.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
-        'USER': 'postgres',
-        'PASSWORD': '63365663',
-        'HOST': 'localhost'
+        'ENGINE': DB_ENGINE,
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST
     }
 }
 
-FILE_CHARSET = 'utf-8'
+FILE_CHARSET = FILE_CHARSET
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -143,9 +141,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = LANGUAGE_CODE
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = TIME_ZONE
 
 USE_I18N = True
 
@@ -165,7 +163,7 @@ MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-AUTO_LOGOUT = {'IDLE_TIME': timedelta(minutes=10)}
+AUTO_LOGOUT = {'IDLE_TIME': timedelta(minutes=AUTO_LOGOUT)}
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
