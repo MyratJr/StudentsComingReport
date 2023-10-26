@@ -119,7 +119,7 @@ def hello(request): return render(request,'000.html')
 def loginuser(request):
     if request.method=='POST':
         username = request.POST['username']; password = request.POST['password']; user = authenticate(username=username, password=password)
-        if user is not None: login(request, user); return redirect('home')
+        if user is not None: login(request, user); return redirect('ishgarler')
         else: return redirect('loginuser')
     else: return render(request,'login.html')
 
