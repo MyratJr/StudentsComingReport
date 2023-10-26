@@ -26,6 +26,7 @@ class Talyplar(models.Model):
     at=models.CharField(max_length=100)
     topar=models.ForeignKey(Toparlar,on_delete=models.CASCADE,related_name='degisli')
     gelen_wagty = JSONField()
+    ID_NO=models.IntegerField()
     barkod_san=models.DecimalField(max_digits=13,decimal_places=0)
     barkod_surat=models.ImageField(upload_to='barcode_img/')
 

@@ -84,7 +84,7 @@ def update(request,id,which):
                 else: q.Rugsat_at=request.POST['at']; q.save()
                 return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged": None,"showMessage": f"{o1} {q.Rugsat_at}-a üýtgedildi."})})
             else: return HttpResponse()
-        elif which==0: return render(request,'ishgarler_form.html',{'movie':Ishgarler.objects.get(id=id),'a6':Wezipeler.objects.all()})
+        elif which==0: return render(request,'ishgarler_form.html',{'movie':Talyplar.objects.get(id=id),'a6':Toparlar.objects.all()})
         elif which==4: return render(request,'all_modal.html',{'movie':Dinleyjiler.objects.get(id=id),'a11':Kurslar.objects.all()})
         elif which==2: return render(request,'all_modal.html',{'a7':Wezipeler.objects.get(id=id)})
         elif which==3: return render(request,'all_modal.html',{'a8':Rugsatlar.objects.get(id=id)})
@@ -104,7 +104,7 @@ def creating(request,san):
                     for i in Talyplar.objects.select_related('topar'):
                         if i.barkod_san==sen: sana+=1
                     if sana>0: return salam()
-                    elif sana==0: bold=Toparlar.objects.get(Topar_at=request.POST['topar']); saving=Talyplar(at=request.POST['at'], topar=bold, gelen_wagty={None:None},barkod_san=sen);saving.save()
+                    elif sana==0: bold=Toparlar.objects.get(Topar_at=request.POST['topar']); saving=Talyplar(at=request.POST['at'], topar=bold, gelen_wagty={None:None},ID_NO=request.POST['id_no'],barkod_san=sen);saving.save()
                 salam();return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged":True,"showMessage": f"{request.POST['at']} döredildi."})})
             elif san==3:
                 def hello():
