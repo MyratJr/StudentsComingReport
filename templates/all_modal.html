@@ -79,7 +79,7 @@
 {% elif a4 %}
 <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content editboxes_w">
     <div class="modal-header">
-        <h5 class="modal-title"><img src="{% static 'brand/add-user.png' %}" width="30"><h6 style="margin-left:5px;margin-top:2%">Işgär girizmek</h6></h5>
+        <h5 class="modal-title"><img src="{% static 'brand/add-user.png' %}" width="30"><h6 style="margin-left:5px;margin-top:2%">Topar goşmak</h6></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
     </div>
         <div class="form-row" style="display:flex;margin-left:4%;width:23vw">
@@ -90,10 +90,10 @@
         </div>
         <div class="form-row" style="display:flex;margin-left:4%;width:23vw">
         <div class="col-md-12 mb-3">
-          <label for="exampleFormControlSelect1" style="color:blue">Wezipesi</label>
-          <select style="font-size:1.5vw;" id="wezipeler" class="aa" id="exampleFormControlSelect1" name="wezipe">
+          <label for="exampleFormControlSelect1" style="color:blue">Topary</label>
+          <select style="font-size:1.5vw;" id="wezipeler" class="aa" id="exampleFormControlSelect1" name="topar">
           {% for i in a4 %}
-              <option>{{i.Wezipe_at}}</option>
+              <option>{{i.Topar_at}}</option>
           {% endfor %}
           </select>
         </div>
@@ -124,7 +124,7 @@
         </div>
 </form>
 {% elif a6 %}
-<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content editboxes">
+<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content editboxes_w">
     <div class="modal-header">
         <h5 class="modal-title"><img src="{% static 'brand/to-do-list.png' %}" width="30"><h6 style="margin-left:5px;margin-top:3%">Wezipe girizmek</h6></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -133,26 +133,6 @@
         <div class="col-md-12 mb-3">
             <input style="font-size:1.5vw;" type="text" class="form-control" id="validationDefault01" name="at" placeholder="Wezipe ady" required>
         </div>
-        </div>
-        <div class="form-row" style="display:flex;margin-left:4%;width:23vw">
-          <div class="col-md-12 mb-3">
-            <label for="validationDefault01" style="color:blue">Iş başlaýan wagty:</label>
-            <input style="font-size:1.5vw;" type="time" class="form-control" name="wagt1" required>
-          </div>
-          <div class="col-md-12 mb-3" style="margin-left: 8%;">
-            <label for="validationDefault01" style="color:blue">Iş guratýan wagty:</label>
-            <input style="font-size:1.5vw;" type="time" class="form-control" name="wagt2" required>
-          </div>
-        </div>
-        <div class="form-row" style="display:flex;margin-left:4%;width:23vw">
-          <div class="col-md-12 mb-3">
-            <label for="validationDefault01" style="color:blue">Obed başlaýan wagty:</label>
-            <input style="font-size:1.5vw;" type="time" class="form-control" name="wagt3" required>
-          </div>
-          <div class="col-md-12 mb-3" style="margin-left: 8%;">
-            <label for="validationDefault01" style="color:blue">Obed gutarýan wagty:</label>
-            <input style="font-size:1.5vw;" type="time" class="form-control" name="wagt4" required>
-          </div>
         </div>
         <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Ýatda sakla</button>

@@ -95,17 +95,17 @@ def update(request,id,which):
 def creating(request,san):
     if request.user.is_authenticated:
         if request.method=='POST':
-            if san==0: wzp=Wezipeler(Wezipe_at=request.POST['at'], is_bashlayar=request.POST['wagt1'], is_gutaryar=request.POST['wagt2'], obed_bashlayar=request.POST['wagt3'], obed_gutaryar=request.POST['wagt4']); wzp.save(); return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged": None,"showMessage": f"{wzp} wezipesi döredildi."})})
+            if san==0: wzp=Toparlar(Topar_at=request.POST['at']); wzp.save(); return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged": None,"showMessage": f"{wzp} topary döredildi."})})
             elif san==2: wzp=Rugsatlar(Rugsat_at=request.POST['at']); wzp.save(); return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged": None,"showMessage": f"{wzp} rugsady döredildi."})})
             elif san==4: wzp=Kurslar(Kurs_at=request.POST['at'], okuw_bashlayar=request.POST['wagt1'], okuw_gutaryar=request.POST['wagt2']); wzp.save(); return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged": None,"showMessage": f"{wzp} Kursy döredildi."})})
             elif san==1:
                 def salam():
                     sana=0; sen=randint(1000000000000,9999999999999)
-                    for i in Ishgarler.objects.select_related('kurs'):
+                    for i in Talyplar.objects.select_related('topar'):
                         if i.barkod_san==sen: sana+=1
                     if sana>0: return salam()
-                    elif sana==0: bold=Wezipeler.objects.get(Wezipe_at=request.POST['wezipe']); saving=Ishgarler(at=request.POST['at'], wezipe=bold, gelen_wagty={None:None}, giden_wagty={None:None}, is_bashlayar=bold.is_bashlayar, is_gutaryar=bold.is_gutaryar, obed_bashlayar=bold.obed_bashlayar, obed_gutaryar=bold.obed_gutaryar, barkod_san=sen); saving.save(); bold.san+=1; bold.save()
-                salam(); return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged":True,"showMessage": f"{request.POST['at']} döredildi."})})
+                    elif sana==0: bold=Toparlar.objects.get(Topar_at=request.POST['topar']); saving=Talyplar(at=request.POST['at'], topar=bold.Topar_at, gelen_wagty={None:None},barkod_san=sen);saving.save()
+                salam();return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged":True,"showMessage": f"{request.POST['at']} döredildi."})})
             elif san==3:
                 def hello():
                     sana=0; sen=randint(100000000000,999999999999)
@@ -116,7 +116,7 @@ def creating(request,san):
                 hello(); return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged": None,"showMessage": f"{request.POST['at']} döredildi."})})
             return HttpResponse()
         elif san==3: return render(request,'all_modal.html',{'a3':Kurslar.objects.all()})
-        elif san==1: return render(request,'all_modal.html',{'a4':Wezipeler.objects.all()})
+        elif san==1: return render(request,'all_modal.html',{'a4':Toparlar.objects.all()})
         elif san==0: return render(request,'all_modal.html',{'a6':'a6'})
         elif san==2: return render(request,'all_modal.html',{'a9':'a9'})
         elif san==4: return render(request,'all_modal.html',{'a1':'a1'})
