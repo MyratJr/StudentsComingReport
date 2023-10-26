@@ -104,7 +104,7 @@ def creating(request,san):
                     for i in Talyplar.objects.select_related('topar'):
                         if i.barkod_san==sen: sana+=1
                     if sana>0: return salam()
-                    elif sana==0: bold=Toparlar.objects.get(Topar_at=request.POST['topar']); saving=Talyplar(at=request.POST['at'], topar=bold.Topar_at, gelen_wagty={None:None},barkod_san=sen);saving.save()
+                    elif sana==0: bold=Toparlar.objects.get(Topar_at=request.POST['topar']); saving=Talyplar(at=request.POST['at'], topar=bold, gelen_wagty={None:None},barkod_san=sen);saving.save()
                 salam();return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged":True,"showMessage": f"{request.POST['at']} döredildi."})})
             elif san==3:
                 def hello():

@@ -35,7 +35,6 @@ class Talyplar(models.Model):
     class Meta:
         ordering=['-id']
 
-
     def save(self, *args, **kwargs):
         EAN=barcode.get_barcode_class('Code128')
         ean=EAN(f'{self.barkod_san}',writer=ImageWriter())
