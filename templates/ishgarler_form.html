@@ -1,23 +1,23 @@
 {% load static %}
 <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content editboxes">
   <div class="modal-header">
-    <h5 class="modal-title"><img src="{% static 'brand/editing.png' %}" style="width: 2vw;"><h6 style="margin-left:5px;margin-top:1%;font-size:3vh">&nbsp&nbspTalyp maglumatyny üýtgetmek</h6></h5>
+    <h5 class="modal-title"><img src="{% static 'brand/editing.png' %}" style="width: 2vw;"><h6 style="font-family:bold;margin-left:5px;margin-top:2%;font-size:4vh">&nbsp&nbspTalyp maglumatyny üýtgetmek</h6></h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
   </div>
   <div class="form-row" style="display:flex;margin-left:4%;width:23vw;margin-top:3%">
     <div class="col-md-12 mb-3">
-      <label for="validationDefault01" style="color:blue">Ady</label>
+      <label for="validationDefault01" style="color:#093936;font-family:bold">Ady</label>
       <input style="font-size:1.5vw;" type="text" class="form-control" value="{{movie.at}}" name="at" required>
     </div>
     <div class="col-md-12 mb-3" style="margin-left: 8%;">
-      <label for="validationDefault01" style="color:blue"></label>
-      <input style="font-size:1.5vw;" type="number" class="form-control" value="{{movie.ID_NO}}" name="wagt1" required>
+      <label for="validationDefault01" style="color:#093936;font-family:bold">Talyp belgisi</label>
+      <input style="font-size:1.5vw;" type="number" class="form-control" value="{{movie.ID_NO}}" name="ID_NO" required>
     </div>
   </div>
   <div class="form-row" style="display:flex;margin-left:4%;width:23vw">
     <div class="col-md-12 mb-3">
-      <label for="exampleFormControlSelect1" style="color:blue">Topary</label>
-      <select style="font-size:1.5vw;" class="aa" id="exampleFormControlSelect1" name="wezipe">
+      <label for="exampleFormControlSelect1" style="color:#093936;font-family:bold">Topary</label>
+      <select style="font-size:1.5vw" class="aa" id="exampleFormControlSelect1" name="topar">
         <option>{{movie.topar}}</option>
         {% for i in a6 %}
         <option>{{i.Topar_at}}</option>
@@ -27,6 +27,6 @@
   </div>
 
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit"style="background-color:#093936" class="btn btn-primary">Save</button>
   </div>
 </form>

@@ -54,14 +54,11 @@ def update(request,id,which):
     if request.user.is_authenticated:
         if request.method=='POST':
             if which==0:
-                id_ishgar=Ishgarler.objects.get(id=id)
-                if id_ishgar.at==request.POST['at'] and str(id_ishgar.wezipe)==request.POST['wezipe'] and id_ishgar.is_bashlayar==request.POST['wagt1'] and id_ishgar.is_gutaryar==request.POST['wagt2'] and id_ishgar.obed_bashlayar==request.POST['wagt3'] and id_ishgar.obed_gutaryar==request.POST['wagt4']: return HttpResponse()
+                id_ishgar=Talyplar.objects.get(id=id)
+                if id_ishgar.at==request.POST['at'] and str(id_ishgar.topar)==request.POST['topar'] and str(id_ishgar.ID_NO)==request.POST['ID_NO']: return HttpResponse()
                 else:
                     T_A=id_ishgar.at; id_ishgar.at = request.POST['at']
-                    if not (id_ishgar.is_bashlayar==request.POST['wagt1'] and id_ishgar.is_gutaryar==request.POST['wagt2'] and id_ishgar.obed_bashlayar==request.POST['wagt3'] and id_ishgar.obed_gutaryar==request.POST['wagt4']): id_ishgar.is_bashlayar= request.POST['wagt1']; id_ishgar.is_gutaryar = request.POST['wagt2']; id_ishgar.obed_bashlayar = request.POST['wagt3']; id_ishgar.obed_gutaryar = request.POST['wagt4']; id_ishgar.save()
-                    else:
-                        if str(id_ishgar.wezipe)!=request.POST['wezipe']: pol=Wezipeler.objects.get(Wezipe_at=request.POST['wezipe']); id_ishgar.is_bashlayar=pol.is_bashlayar; id_ishgar.is_gutaryar = pol.is_gutaryar; id_ishgar.obed_bashlayar = pol.obed_bashlayar; id_ishgar.obed_gutaryar = pol.obed_gutaryar
-                    id_ishgar.wezipe=Wezipeler.objects.get(Wezipe_at=request.POST['wezipe']); id_ishgar.save(); return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged": None,"showMessage": f"{T_A} maglumaty üýtgedildi."})})
+                    id_ishgar.topar=Toparlar.objects.get(Topar_at=request.POST['topar']); id_ishgar.save(); return HttpResponse(status=204,headers={'HX-Trigger': json.dumps({"movieListChanged": None,"showMessage": f"{T_A} maglumaty üýtgedildi."})})
             elif which==4:
                 q=Dinleyjiler.objects.get(id=id)
                 if q.at==request.POST['at'] and str(q.kurs)==request.POST['wezipe'] and q.okuw_bashlayar==request.POST['wagt1'] and q.okuw_gutaryar==request.POST['wagt2']: return HttpResponse(status=204)
