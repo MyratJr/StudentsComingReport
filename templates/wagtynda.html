@@ -11,14 +11,27 @@
         <link href="{% static 'dist/css/reponse.css' %}" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'dist/css/datatable.css' %}">
     </head>
+            <style>
+    .obshio {
+    background: white;
+    border-radius: 8px;
+    padding: 2em;
+    padding-bottom: 1em;
+    box-shadow: 1px 1px 4px 1px rgb(112, 112, 112);
+    margin-bottom: 2em;
+    margin-top: 1vw;
+    margin-right: 13%;
+    margin-left: 1em;
+}
+    </style>
     {% include 'navbar.html' %}
     {% include 'sidebar.html' %}
     <body>
-    <div class="obshi">
-            <h4 class="wezipe" style="position:absolute">Wagtynda gelenler</h4>
+    <div class="obshio">
+            <h4 class="wezipe" style="position:absolute;font-family:bold;font-size:7vh"><h1 style="font-family:bold;text-align:center;color:#93936">Wagtynda gelenler</h1></h4>
             <form method="POST" action="{% url 'wagtynda_gelenler' aaaaa %}" onchange="submit()">
               {% csrf_token %}
-            <div class="col-md-2 mb-3" style="margin-left: 80%;">
+            <div class="col-md-2 mb-3" style="margin-top:-8vh">
               <select style="font-size:1.5vw;" class="aa" name="day">
                 <option>{{aaaaa}}</option>
                 {% for i in day_category %}
@@ -32,12 +45,11 @@
             <ul class="border-top my-2"></ul>
             <table id="My_table" class="table font bg-white">
             <thead>
-              <tr>
+              <tr style="color:#093936;font-family:bold;font-size:3vh">
                 <th scope="col">T/B</th>
                 <th scope="col">Ady</th>
-                <th scope="col">Wezipe</th>
+                <th scope="col">Topary</th>
                 <th>Gelen wagty</th>
-                <th>Giden wagty</th>
               </tr>
             </thead>
             <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'wagtynda_gelenler_table' aaaaa %}" hx-target="this">

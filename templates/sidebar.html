@@ -19,22 +19,28 @@
     <ul class="list-unstyled ps-0">
       {% if user.id != 3 %}
       <li class="mb-1">
+      {% if talyplar or toparlars %}
         <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
           Hasaba alyş
         </button>
         <div class="collapse menufont show" id="home-collapse">
-
+      {% else %}
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed menufont" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+          Hasaba alyş
+        </button>
+        <div class="collapse menufont" id="home-collapse">
+      {% endif %}
            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li>
-              {% if not isgarler %}
-                <a href="{% url 'ishgarler' %}" class="link-dark d-inline-flex text-decoration-none rounded">Talyplar</a>
+              {% if not talyplar %}
+                <a href="{% url 'talyplar' %}" class="link-dark d-inline-flex text-decoration-none rounded">Talyplar</a>
               {% else %}
                 <a class="link-dark d-inline-flex text-decoration-none rounded">Talyplar</a>
               {% endif%}
             </li>
             <li>
-              {% if not wezipelers %}
-                <a href="{% url 'wezipeler' %}" class="link-dark d-inline-flex text-decoration-none rounded">Toparlar</a></li>
+              {% if not toparlars %}
+                <a href="{% url 'toparlar' %}" class="link-dark d-inline-flex text-decoration-none rounded">Toparlar</a></li>
               {% else %}
                 <a class="link-dark d-inline-flex text-decoration-none rounded">Toparlar</a></li>
               {% endif %}

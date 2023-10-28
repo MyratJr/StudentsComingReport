@@ -8,17 +8,17 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-def index_ishgarler(request):
-    if not request.user.id == 3: return render(request, 'ishgarler.html',{'isgarler':'isgarler'})
+def index_talyplar(request):
+    if not request.user.id == 3: return render(request, 'talyplar.html',{'talyplar':'talyplar'})
     else: return HttpResponse(status=204)
 
-def ishgarler_list(request): return render(request, 'table_ishgarler.html',{'ishgarler': Talyplar.objects.select_related('topar')})
+def talyplar_list(request): return render(request, 'table_talyplar.html',{'talyplar': Talyplar.objects.select_related('topar')})
 
-def wezipeler(request):
+def toparlar(request):
     if request.user.id==3: return HttpResponse(status=204)
-    return render(request,'wezipeler.html',{'wezipelers':Toparlar.objects.all()})
+    return render(request,'toparlar.html',{'toparlars':'toparlars'})
 
-def wezipe_table(request): return render(request,'wezipe_table.html',{'wezipeler':Toparlar.objects.all()})
+def topar_table(request): return render(request,'topar_table.html',{'toparlar':Toparlar.objects.all()})
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def wagtynda_gelenler(request,date):
@@ -27,30 +27,30 @@ def wagtynda_gelenler(request,date):
     return render(request,'wagtynda.html',{'aaaaa':date,'day_category':Talyp_Gunler.objects.all(),'w1':'w1'})
 
 def wagtynda_gelenler_table(request,date):
-    asd=[];r=Talyplar.objects.filter(~Q(balnoy_wagt__overlap=[date]) & Q(gelen_wagty__has_key=date))
+    asd=[];r=Talyplar.objects.filter(Q(gelen_wagty__has_key=date))
     for j in r:
-        if j.gelen_wagty[date]<=j.is_bashlayar: asd.append(j)
+        if j.gelen_wagty[date]<="09:00": asd.append(j)
     context={'wagtynda_gelenler':asd,'date':date}
     return render(request,'wagtynda_table.html',context)
 
 def gija_galanlar(request,date):
-    if date==str(9): date=str(Talyplar.objects.all().first())
+    if date==str(9): date=str(Talyp_Gunler.objects.all().first())
     elif request.method=='POST': date = request.POST['day']
-    return render(request,'gija_galanlar.html',{'aaaaa':date,'day_category':Talyplar.objects.all(),'g1':'g1',})
+    return render(request,'gija_galanlar.html',{'aaaaa':date,'day_category':Talyp_Gunler.objects.all(),'g1':'g1',})
 
 def gija_galanlar_table(request,date):
-    asd=[]; r=Talyplar.objects.filter(~Q(balnoy_wagt__overlap=[date]) & Q(gelen_wagty__has_key=date))
+    asd=[]; r=Talyplar.objects.filter(Q(gelen_wagty__has_key=date))
     for j in r:
-        if j.gelen_wagty[date]>j.is_bashlayar: asd.append(j)
+        if j.gelen_wagty[date]>"09:00": asd.append(j)
     context={'gija_galanlar':asd,'date':date}
     return render(request,'gija_galanlar_table.html',context)
 
 def gelmedikler(request,date):
-    if date==str(9): date=str(Talyplar.objects.all().first())
+    if date==str(9): date=str(Talyp_Gunler.objects.all().first())
     elif request.method=='POST': date = request.POST['day']
-    return render(request,'gelmedikler.html',{'aaaaa':date,'day_category':Talyplar.objects.all(),'g2':'g2',})
+    return render(request,'gelmedikler.html',{'aaaaa':date,'day_category':Talyp_Gunler.objects.all(),'g2':'g2',})
     
-def gelmedikler_table(request,date): r=Talyplar.objects.filter(~Q(gelen_wagty__has_key=date) & ~Q(balnoy_wagt__overlap=[date]));context={'gelmedikler':r};return render(request,'gelmedikler_table.html',context)
+def gelmedikler_table(request,date): r=Talyplar.objects.filter(~Q(gelen_wagty__has_key=date));context={'gelmedikler':r};return render(request,'gelmedikler_table.html',context)
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def barkod(request, pk, which):
@@ -62,7 +62,7 @@ def hello(request): return render(request,'000.html')
 def loginuser(request):
     if request.method=='POST':
         username = request.POST['username']; password = request.POST['password']; user = authenticate(username=username, password=password)
-        if user is not None: login(request, user); return redirect('ishgarler')
+        if user is not None: login(request, user); return redirect('talyplar')
         else: return redirect('loginuser')
     else: return render(request,'login.html')
 

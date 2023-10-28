@@ -13,9 +13,9 @@
     </head>
     <body style="background-color:white;">
       {% if bellik1 %}
-        <h2 class="bellik"><img src="{% static 'brand/success.png' %}" width="4%" style="margin-top:-1%;"> {{bellik1}}</h2>
+        <h2 class="bellik" style="color:green">{{bellik1}}</h2>
       {% elif bellik0 %}
-      <h2 class="bellik"><img src="{% static 'brand/warning.png' %}" width="4%" style="margin-top:-1%;"> {{bellik0}}</h2>
+      <h2 class="bellik" style="color:red">{{bellik0}}</h2>
       {% endif %}
         <div style="margin-top:-5px;">
         <form action="maglumat" method="post">

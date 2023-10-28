@@ -2,10 +2,10 @@ from django.urls import path
 from .views import*
 
 urlpatterns = [
-    path('ishgarler',index_ishgarler,name="ishgarler"),
-    path('ishgarler_list',ishgarler_list, name='ishgarler_list'),
-    path('wezipeler',wezipeler,name='wezipeler'),
-    path('wezipe_table',wezipe_table,name='wezipe_table'),
+    path('talyplar',index_talyplar,name="talyplar"),
+    path('talyplar_list',talyplar_list, name='talyplar_list'),
+    path('toparlar',toparlar,name='toparlar'),
+    path('topar_table',topar_table,name='topar_table'),
     path('wagtynda_gelenler/<str:date>',wagtynda_gelenler,name='wagtynda_gelenler'),
     path('wagtynda_gelenler_table/<str:date>',wagtynda_gelenler_table,name='wagtynda_gelenler_table'),
     path('gija_galanlar/<str:date>',gija_galanlar,name='gija_galanlar'),

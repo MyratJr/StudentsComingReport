@@ -4,5 +4,5 @@ class Code_getter(forms.Form):
                         widget=forms.TextInput(attrs={
                                 'class':'form-control',
                                 'autofocus':"autofocus",
-                                'placeholder':'Işgäriň barkody',
+                                'placeholder':'Talybyň barkody',
                             }))

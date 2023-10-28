@@ -27,12 +27,12 @@
     {% include 'sidebar.html' %}
     <body>
         <div class="obshio">
-        <h4 class="wezipe">Toparlar
-          {% if user.id == 1 or user.id == 2 %}<button class="btn btn-primary" style="background-color:#093936;float:right;margin-top:-0.6%"><a type="button" hx-get="{% url 'create' 0 %}" hx-target="#dialog" style="text-decoration:none;color:white">Topar goşmak</a></button>{% endif %}</h4>
+        <h4 class="wezipe" style="color:#093936;font-family:bold;font-size:7vh">
+          {% if user.id == 1 or user.id == 2 %}<button class="btn btn-light" style="background-color:#093936;margin-top:-0.6%"><a type="button" hx-get="{% url 'create' 0 %}" hx-target="#dialog" style="text-decoration:none;color:white">Topar goşmak</a></button><a style="margin-left:28vw">Toparlar</a>{% endif %}</h4>
         <h6 class="border-top my-2"></h6>
         <table id="My_table" class="font table bg-white">
         <thead>
-              <tr>
+              <tr style="color:#093936;font-family:bold;font-size:3vh">
                 <th scope="col">T/B</th>
                 <th scope="col">Toparlar</th>
                 {% if user.id == 1 or user.id == 2 %}
@@ -40,7 +40,7 @@
                 {% endif %}
               </tr>
             </thead>
-            <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'wezipe_table' %}" hx-target="this">
+            <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'topar_table' %}" hx-target="this">
             </tbody>
           </table>
         </div>
