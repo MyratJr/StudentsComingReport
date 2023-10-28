@@ -6,5 +6,4 @@ urlpatterns = [
     path('delete_item/<int:id>',delete_item,name='delete_item'),
     path('update/<int:id>/<int:which>',update,name="update"),
     path('create/<int:san>',creating,name="create"),
-    path('rugsat/<int:id>/<int:which>',Rugsat_bermek,name="rugsat"),
 ]
