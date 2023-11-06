@@ -29,7 +29,7 @@
     </style>
     <div class="obshio">
             <h4 class="wezipe" style="position:absolute;font-family:bold;font-size:7vh"><h1 style="font-family:bold;text-align:center;color:#93936">Giç gelenler</h1></h4>
-            <form method="POST" action="{% url 'gija_galanlar' aaaaa %}" onchange="submit()">
+            <form method="POST" action="{% url 'gija_galanlar' %}" onchange="submit()">
               {% csrf_token %}
             <div class="col-md-2 mb-3" style="margin-top:-8vh">
               <select style="font-size:1.5vw;" class="aa" id="exampleFormControlSelect1" name="day">
@@ -38,6 +38,13 @@
                 {% if i.day|date:"Y-m-d" != aaaaa|date:"Y-m-d" %}
                 <option>{{i.day|date:"Y-m-d"}}</option>
                 {% endif %}
+                {% endfor %}
+              </select>
+              <select style="font-size:1.5vw;margin-left:105%;margin-top:-7vh" class="aa" id="exampleFormControlSelect1" name="category">
+                <option>{{bbbbb}}</option>
+                <option>Ähli</option>
+                {% for i in toparlar %}
+                <option>{{i.Topar_at}}</option>
                 {% endfor %}
               </select>
             </div>
@@ -52,7 +59,7 @@
                 <th>Gelen wagty</th>
               </tr>
             </thead>
-            <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'gija_galanlar_table' aaaaa %}" hx-target="this">
+            <tbody hx-trigger="load, movieListChanged from:body" hx-get="{% url 'gija_galanlar_table' aaaaa bbbbb %}" hx-target="this">
             </tbody>
         </table>
         </div>

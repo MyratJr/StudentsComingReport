@@ -17,7 +17,7 @@
         margin:0;
         padding:0;
         font-family: sans-serif;
-        background: linear-gradient(#141e30, #243b55);
+        background: linear-gradient(yellow,#093936);
       }
       
       .login-box {
@@ -105,7 +105,6 @@
       
       
 </style>
-<h6 style="margin-top:88vh;font-size:1.5vh">Begmyradow Myratgeldi tarapyndan "SANLY MAGLUMATLAR WE OLARY GORAMAGYŇ TEHNOLOGIÝALARY" ylmy-önümçilik merkezinde döredildi.</h6>
 <div class="login-box">
     <h2>Paroly çalyşmak</h2>
     <form method="POST" action="{% url 'change_login' %}">
@@ -169,36 +168,3 @@ function myFunction() {
       <button class="btn btn-outline-primary" type="reset" >No change</button>
 </div></form>
   </div>
-  <script>
-    //variable to check whether the page was refreshed or the page will keep on refreshing every second.
-    var vrefreshed=localStorage.getItem('refreshed');
-    if (typeof vrefreshed === 'undefined')
-        vrefreshed = 0;
-    
-    function time() {
-        var d = new Date();
-        var h = d.getHours();
-        var m = d.getMinutes();
-        var s = d.getSeconds();
-        if(vrefreshed==0 && ((h==10 && m==00 && s==00) || (h==13 && m==00 && s==00))){
-            localStorage.setItem('refreshed', 1);
-            vrefreshed=1;
-            Swal.fire({
-              title: 'Rugsady gutarjak işgärlere göz aýlaň!',
-              denyButtonText: 'OK',
-            }).then((result) => {
-              location.reload();
-            })
-            
-        }else{
-            localStorage.setItem('refreshed', 0);
-            vrefreshed=0;
-            }
-        }      
-    setInterval(time, 1000);
-    </script>
-    <script
-    src="{% static 'dist/js/autorefresh.js' %}"
-    integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
-    crossorigin='anonymous'></script>
-    <script src="{% static 'dist/js/sweetalert2@11.js' %}"></script>

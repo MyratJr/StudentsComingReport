@@ -6,7 +6,7 @@
     <td scope="row">{{i.topar}}</td>
     <td scope="row">{{i.ID_NO}}</td>
     <td scope="row">{{i.barkod_san}}</td>
-    {% if user.id == 1 or user.id == 2 %}
+    {% if user.id == 1 %}
     <td scope="row"><a type="button" hx-get="{% url 'barkod' i.id 1 %}" hx-target="#dialog"><img class="image_ara pnglar" src="{% static 'brand/barcode.png' %}"></a></td>
     <td scope="row"><a  type="button" hx-get="{% url 'update' i.id 0 %}" hx-target="#dialog"><img class="image_ara kiciler" src="{% static 'brand/editing.png' %}"></a></td>
     <td scope="row"><a type="button" hx-get="{% url 'delete_item' i.id %}" hx-target="#dialog" ><img class="image_ara kiciler" src="{% static 'brand/delete.png' %}"></a></td>              
@@ -14,7 +14,7 @@
     </tr>
 {% endfor %}
 
-{% if user.id == 1 or user.id == 2 %}
+{% if user.id == 1 %}
 <script type="text/javascript">
     $(document).ready(function(){
       $('#My_table').DataTable({

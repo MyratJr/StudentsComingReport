@@ -16,7 +16,13 @@ def maglumat(request):
                 except ObjectDoesNotExist: context['bellik0']='Talyp tapylmady, täzeden synanyşyň!'; return render(request,'derweze.html',context)
             else: context['bellik0']='Barkod nädogry, täzeden synanyşyň!'; return render(request,'derweze.html',context)
             if date.strftime('%Y-%m-%d') not in a.gelen_wagty:
-                a.gelen_wagty[date.strftime('%Y-%m-%d')]=date.strftime('%H:%M'); context['wagt1']=a.gelen_wagty[date.strftime('%Y-%m-%d')]; context['a']=a; context['bellik1']='Siz içeri girdiňiz!'
+                a.gelen_wagty[date.strftime('%Y-%m-%d')]=date.strftime('%H:%M'); context['wagt1']=a.gelen_wagty[date.strftime('%Y-%m-%d')]; context['a']=a
+                if date.strftime('%H:%M')<="09:00":
+                    context['bellik1']='Siz wagtynda geldiňiz'
+                    context['bellik2']='Giriş wagt hasaba alyndy!'
+                else:
+                    context['bellik0']='Siz gijä galdyňyz'
+                    context['bellik1']="Giriş wagt hasaba alyndy!"
             elif date.strftime('%Y-%m-%d') in a.gelen_wagty: context['wagt1']=a.gelen_wagty[date.strftime('%Y-%m-%d')]; context['a']=a; context['bellik1']='Giriş wagt hasaba alyndy!'
             a.save(); return render(request,'derweze.html',context)
         else: context={'form':Code_getter}; context['bellik0']='Nädogry barkod görnüşi, barkodyňyzyň görnüşiniň dogrulygyny anyklaň!'; return render(request,'derweze.html',context)

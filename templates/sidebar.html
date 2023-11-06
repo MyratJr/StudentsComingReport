@@ -60,9 +60,9 @@
         <div class="collapse menufont" id="dashboard-collapse">
         {% endif %}
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li>{% if w1 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Wagtynda gelenler</a>{% else %}<a href="{% url 'wagtynda_gelenler' 9 %}" class="link-dark d-inline-flex text-decoration-none rounded">Wagtynda gelenler</a>{% endif %}</li>
-            <li>{% if g1 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Gijä galanlar</a>{% else %}<a href="{% url 'gija_galanlar' 9 %}" class="link-dark d-inline-flex text-decoration-none rounded">Gijä galanlar</a>{% endif %}</li>
-            <li>{% if g2 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Gelmedikler</a>{% else %}<a href="{% url 'gelmedikler' 9 %}" class="link-dark d-inline-flex text-decoration-none rounded">Gelmedikler</a>{% endif %}</li>
+            <li>{% if w1 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Wagtynda gelenler</a>{% else %}<a href="{% url 'wagtynda_gelenler' %}" class="link-dark d-inline-flex text-decoration-none rounded">Wagtynda gelenler</a>{% endif %}</li>
+            <li>{% if g1 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Gijä galanlar</a>{% else %}<a href="{% url 'gija_galanlar' %}" class="link-dark d-inline-flex text-decoration-none rounded">Gijä galanlar</a>{% endif %}</li>
+            <li>{% if g2 %}<a class="link-dark d-inline-flex text-decoration-none rounded">Gelmedikler</a>{% else %}<a href="{% url 'gelmedikler' %}" class="link-dark d-inline-flex text-decoration-none rounded">Gelmedikler</a>{% endif %}</li>
           </ul>
         </div>
       </li>

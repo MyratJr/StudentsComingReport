@@ -3,10 +3,12 @@
 <tr style="color:#093936;font-family:bold;font-size:3vh">
   <td style="width: 45%;" scope="row">{{forloop.counter}}</td>
   <td style="width: 52%;" scope="row">{{i.Topar_at}}</td>
+  {% if user.id == 1 %}
   <td scope="row"><a type="button" hx-get="{% url 'update' i.id 2 %}" hx-target="#dialog"><img class="image_ara kiciler" src="{% static 'brand/editing.png' %}" ></a></td>
+  {% endif %}
 </tr>
 {% endfor %}
-{% if user.id == 1 or user.id == 2 %}
+{% if user.id == 1 %}
 <script type="text/javascript">
     $(document).ready(function(){
       $('#My_table').DataTable({

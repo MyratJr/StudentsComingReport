@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import*
 
+{'aman':'aman'}
+{'myrat':'12mn09zx'}
+
 class Posts(admin.ModelAdmin):
     search_fields=['at']
 

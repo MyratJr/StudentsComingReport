@@ -11,11 +11,16 @@
         <link href="{% static 'dist/css/login.css' %}" rel="stylesheet">
         <title>Barcode_Frontt</title>
     </head>
+    <meta http-equiv="refresh" content="600"></meta>
     <body style="background-color:white;">
+      {% if bellik0 %}
+        <h2 class="bellik" style="color:red">{{bellik0}}</h2>
+      {% endif %}
       {% if bellik1 %}
-        <h2 class="bellik" style="color:green">{{bellik1}}</h2>
-      {% elif bellik0 %}
-      <h2 class="bellik" style="color:red">{{bellik0}}</h2>
+      <h2 class="bellik" style="color:green">{{bellik1}}</h2>
+      {% endif %}
+      {% if bellik2 %}
+      <h2 class="bellik" style="color:green">{{bellik2}}</h2>
       {% endif %}
         <div style="margin-top:-5px;">
         <form action="maglumat" method="post">
@@ -28,6 +33,7 @@
             <div class="receipt">
               <div class="sign center">
                 <div class="atsize" style="margin-top:-3%;color:blue">{{a.at}}</div>
+                <div class="atsize" style="margin-top:-1%;color:#093936;font-size:220%"><a style="color:green">Topar :</a> {{a.topar}}</div>
                 <div class="paper" style="margin-top:2%;"></div>
                 {% endif %}
                 {% if wagt1 %}
@@ -46,12 +52,4 @@
         </div>
     </body>
 </html>
-  
-  <script>
-    function pay()
-  {
-    $(".receipt").slideUp("slow");
-    $(".paid").slideDown("slow");
-  }
-  
-  </script>
+    </script>
