@@ -3,6 +3,8 @@ from .models import*
 
 {'aman':'aman'}
 {'myrat':'12mn09zx'}
+{'kuwwat':'3edx4rfc'}
+
 
 class Posts(admin.ModelAdmin):
     search_fields=['at']
