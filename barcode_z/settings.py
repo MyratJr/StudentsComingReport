@@ -34,7 +34,7 @@ ALLOWED_HOSTS =ALLOWED_HOSTS
 
 
 INSTALLED_APPS = [
-    'maglumat',
+    'diplom',
     'ajax_datatable',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,7 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
             ],
             'libraries': {
-                'custom_tags':'maglumat.template_tags.custom_tags'
+                'custom_tags':'diplom.template_tags.custom_tags'
             }
         },
     },

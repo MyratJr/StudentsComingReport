@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist;from random import randint;import datetime; from django.shortcuts import render,redirect; from django.http import HttpResponse; from .models import*; from django.contrib.auth import authenticate,logout,login; from dbr import*; from .forms import*; import json; from django.db.models import Q; from django.contrib.auth.models import User; from dateutil.relativedelta import relativedelta; from django.views.decorators.csrf import requires_csrf_token
 
 @requires_csrf_token
-def maglumat(request):
+def diplom(request):
     dtgun=datetime.date.today(); date=datetime.datetime.now()
     if request.method == "POST":
         form=Code_getter(request.POST)
@@ -17,7 +17,7 @@ def maglumat(request):
             else: context['bellik0']='Barkod nädogry, täzeden synanyşyň!'; return render(request,'derweze.html',context)
             if date.strftime('%Y-%m-%d') not in a.gelen_wagty:
                 a.gelen_wagty[date.strftime('%Y-%m-%d')]=date.strftime('%H:%M'); context['wagt1']=a.gelen_wagty[date.strftime('%Y-%m-%d')]; context['a']=a
-                if date.strftime('%H:%M')<="13:00":
+                if date.strftime('%H:%M')<="09:00":
                     context['bellik1']='Siz wagtynda geldiňiz'
                     context['bellik2']='Giriş wagt hasaba alyndy!'
                 else:

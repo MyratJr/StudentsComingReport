@@ -21,7 +21,7 @@ class Talyplar(models.Model):
     gelen_wagty = JSONField()
     ID_NO=models.IntegerField()
     barkod_san=models.DecimalField(max_digits=13,decimal_places=0)
-    barkod_surat=models.ImageField(upload_to='barcode_img/')
+    barkod_surat=models.ImageField(upload_to='barcode_img/',blank=True)
 
     def __str__(self):
         return str(self.at)

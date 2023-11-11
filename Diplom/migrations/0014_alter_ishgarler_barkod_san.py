@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('maglumat', '0013_wezipeler_is_gutar_wezipeler_obed_basla_and_more'),
+        ('diplom', '0002_ishgarler'),
     ]
 
     operations = [

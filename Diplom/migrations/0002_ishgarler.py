@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('maglumat', '0001_initial'),
+        ('diplom', '0001_initial'),
     ]
 
     operations = [
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('obed_gutaryar', models.TimeField(default=datetime.time(14, 0))),
                 ('barkod_san', models.CharField(max_length=15)),
                 ('barkod_surat', models.ImageField(blank=True, upload_to='barcode_img/')),
-                ('wezipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='maglumat.wezipeler')),
+                ('wezipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='diplom.wezipeler')),
             ],
             options={
                 'ordering': ['id'],

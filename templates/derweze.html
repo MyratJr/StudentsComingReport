@@ -12,9 +12,10 @@
         <title>Barcode_Frontt</title>
     </head>
     <meta http-equiv="refresh" content="600"></meta>
-    <body style="background-color:white;">
+    <body style="background-color:white">
+    <div style="font-size:70%">
       {% if bellik0 %}
-        <h2 class="bellik" style="color:red">{{bellik0}}</h2>
+        <h2 class="bellik" style="color:goldenrod">{{bellik0}}</h2>
       {% endif %}
       {% if bellik1 %}
       <h2 class="bellik" style="color:green">{{bellik1}}</h2>
@@ -22,18 +23,19 @@
       {% if bellik2 %}
       <h2 class="bellik" style="color:green">{{bellik2}}</h2>
       {% endif %}
+    </div>
         <div style="margin-top:-5px;">
-        <form action="maglumat" method="post">
+        <form action="diplom" method="post">
             {% csrf_token %}
             <div style="width:40vw;margin-left:30%;margin-top:2%;margin-bottom:-3vh">{{form.barkod}}</div>
         </form>
         {% if a %}
         <div class="container">
             <div class="tab"></div>
-            <div class="receipt">
-              <div class="sign center">
+            <div class="receipt" style="height:270px">
+              <div class="sign center" style="font-size:75%">
                 <div class="atsize" style="margin-top:-3%;color:blue">{{a.at}}</div>
-                <div class="atsize" style="margin-top:-1%;color:#093936;font-size:220%"><a style="color:green">Topar :</a> {{a.topar}}</div>
+                <div class="atsize" style="margin-top:-1%;color:#093936;"><a style="color:green">Topar :</a> {{a.topar}}</div>
                 <div class="paper" style="margin-top:2%;"></div>
                 {% endif %}
                 {% if wagt1 %}
