@@ -5,13 +5,6 @@ from barcode.writer import ImageWriter
 from io import BytesIO
 from django.core.files import File
 
-class del_info_gun(models.Model):
-    gun=models.CharField(max_length=10)
-
-    def __str__(self):
-        return str(self.gun)
-
-
 class Toparlar(models.Model):
     Topar_at=models.CharField(max_length=50)
 

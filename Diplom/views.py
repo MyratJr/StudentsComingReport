@@ -9,13 +9,18 @@ from django.contrib.auth.models import User
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def index_talyplar(request):
-    if not request.user.id == 3: return render(request, 'talyplar.html',{'talyplar':'talyplar'})
-    else: return HttpResponse(status=204)
+    if request.method!="POST":category=str("Ähli")
+    elif request.method=='POST': category=request.POST['category']
+    return render(request, 'talyplar.html',{'talyplar':'talyplar','bbbbb':category,'toparlar':Toparlar.objects.all()})
 
-def talyplar_list(request): return render(request, 'table_talyplar.html',{'talyplar': Talyplar.objects.select_related('topar')})
+def talyplar_list(request,category): 
+    if category=='Ähli': r=Talyplar.objects.select_related('topar')
+    else: topar_category=Toparlar.objects.get(Topar_at=category);r=Talyplar.objects.filter(topar=topar_category)
+    return render(request, 'table_talyplar.html',{
+        'talyplar': r
+    })
 
 def toparlar(request):
-    if request.user.id==3: return HttpResponse(status=204)
     return render(request,'toparlar.html',{'toparlars':'toparlars'})
 
 def topar_table(request): return render(request,'topar_table.html',{'toparlar':Toparlar.objects.all()})
@@ -65,8 +70,6 @@ def barkod(request, pk, which):
     if which==1: return render(request,'all_modal.html',{'a12':Talyplar.objects.get(id=pk)})
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-def hello(request): return render(request,'000.html')
-
 def loginuser(request):
     if request.method=='POST':
         username = request.POST['username']; password = request.POST['password']; user = authenticate(username=username, password=password)
@@ -75,16 +78,3 @@ def loginuser(request):
     else: return render(request,'login.html')
 
 def loguser_out(request): logout(request); return redirect('loginuser')
-
-def change_login(request):
-    if request.user.is_authenticated:
-        if request.method=='POST':
-            context={}; user = authenticate(username=request.user, password=request.POST['1'])
-            if user is not None:
-                if request.POST['2']==request.POST['3']: u=User.objects.get(username=request.user); logout(request); u.set_password(request.POST['2']); u.save(); return redirect('loginuser')
-                else: context['tip1']='tip1'
-            else: context['tip2']='tip2'
-            context['oop1']=request.POST['1']; context['oop2']=request.POST['2']; context['oop3']=request.POST['3']
-            return render(request, 'chloginps.html',context)
-        else: return render(request,'chloginps.html')
-    else: return HttpResponse()

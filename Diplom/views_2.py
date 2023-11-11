@@ -17,7 +17,7 @@ def maglumat(request):
             else: context['bellik0']='Barkod nädogry, täzeden synanyşyň!'; return render(request,'derweze.html',context)
             if date.strftime('%Y-%m-%d') not in a.gelen_wagty:
                 a.gelen_wagty[date.strftime('%Y-%m-%d')]=date.strftime('%H:%M'); context['wagt1']=a.gelen_wagty[date.strftime('%Y-%m-%d')]; context['a']=a
-                if date.strftime('%H:%M')<="09:00":
+                if date.strftime('%H:%M')<="13:00":
                     context['bellik1']='Siz wagtynda geldiňiz'
                     context['bellik2']='Giriş wagt hasaba alyndy!'
                 else:
