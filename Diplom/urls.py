@@ -2,7 +2,7 @@ from django.urls import path
 from .views import*
 
 urlpatterns = [
-    path('talyplar',index_talyplar,name="talyplar"),
+    path('',index_talyplar,name="talyplar"),
     path('talyplar_list/<str:category>',talyplar_list, name='talyplar_list'),
     path('toparlar',toparlar,name='toparlar'),
     path('topar_table',topar_table,name='topar_table'),
@@ -13,6 +13,6 @@ urlpatterns = [
     path('gelmedikler',gelmedikler,name='gelmedikler'),
     path('gelmedikler_table/<str:date>/<str:category>',gelmedikler_table,name='gelmedikler_table'),
     path('barkod/<int:pk>/<int:which>',barkod,name='barkod'),
-    path('',loginuser,name='loginuser'),
+    path('loginuser',loginuser,name='loginuser'),
     path('logout',loguser_out,name='logging_out'),
 ]

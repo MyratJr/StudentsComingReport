@@ -49,12 +49,12 @@
     </style>
     <body>
         <header style="background-color:#093936;position:sticky;height:10vh">
-              {% if user.is_authenticated %}
+              {% if user.is_authenticated and request.path != '/loginuser' %}
                 {% if request.path != '/talyplar' %}
-                  <a class="nav-link fw-bold py-2 px-2" style="color:white;margin-left:1.2vw;background-color:white;color:#093936" href="{% url 'talyplar' %}">Baş sahypa</a>
+                  <a class="btn btn-success" style="color:white;margin-left:1.2vw;background-color:white;color:#093936" href="{% url 'talyplar' %}">Baş sahypa</a>
                 {% endif %}
-                <a class="nav-link fw-bold py-2 px-2" style="color:white;margin-left:1.2vw;background-color:yellow;color:#093936" href="{% url 'logging_out' %}">Çykmak</a>
-              {% endif %}<h4 style="color:goldenrod;margin-left:20vw;position:fixed">Welcome {% if user.is_authenticated %}{{request.user}}{% endif %}</h4>
+                <a class="btn btn-success" style="color:white;margin-left:1.2vw;background-color:yellow;color:#093936" href="{% url 'logging_out' %}">Çykmak</a>
+              {% endif %}<h4 style="color:goldenrod;margin-left:80%;position:fixed">{% if user.is_authenticated and request.path != '/loginuser' %}<a style="color:white">Ulanyjy:</a> {{request.user}}{% endif %}</h4>
             <h5 style="color:white;margin-left:38vw;position:fixed">Talyplaryň okuwa geliş hasabaty</h5>
             <nav style="margin-left:50vw;position:absolute" class="nav nav-masthead justify-content-center float-md-end">
             </nav>

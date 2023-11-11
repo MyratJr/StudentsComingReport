@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>403</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+</head>
+{% include 'navbar.html' %}
 <style>
-    html {
-        height: 100%;
-      }
-      body {
-        margin:0;
-        padding:0;
-        font-family: sans-serif;
-        background: linear-gradient(#141e30, #141e30);
-      }
-      
-      .login-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 400px;
-        padding: 40px;
-        transform: translate(-50%, -50%);
-        background: rgba(0,0,0,.5);
-        box-sizing: border-box;
-        box-shadow: 0 15px 25px rgba(0,0,0,.6);
-        border-radius: 10px;
-      }
+    .obshi {
+    background: white;
+    border-radius: 8px;
+    padding: 2em;
+    padding-bottom: 1em;
+    box-shadow: 1px 1px 4px 1px rgb(112, 112, 112);
+    margin-bottom: 2em;
+    margin-top: 1vw;
+    margin-right: 13%;
+    margin-left: 0.4em;
+}
 </style>
-<h1 style="text-align:center;margin-top:-10vh;font-size:95vh">403</h1>
+<body>
+    <h1 class="obshi"><div style="margin-top:-5%;">403<br>Häzirki wagtda size bu salga rugsat berilmeýär.</div><a class="btn btn-success" href="{% url 'diplom' %}">Yza</a></h1>
+</body>
+</html>

@@ -33,7 +33,7 @@
         {% endif %}
         {% if not user.is_authenticated %}
 		<div class="login-content">
-			<form method="post">
+			<form method="POST">
                 {% csrf_token %}            
 				<img src="{% static 'brand/logo.png' %}" style="height:200px">
 				<h2 class="title" style="color:#093936">Hoş geldiňiz</h2>

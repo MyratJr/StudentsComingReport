@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import requires_csrf_token
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import*
@@ -70,6 +71,7 @@ def barkod(request, pk, which):
     if which==1: return render(request,'all_modal.html',{'a12':Talyplar.objects.get(id=pk)})
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@requires_csrf_token
 def loginuser(request):
     if request.method=='POST':
         username = request.POST['username']; password = request.POST['password']; user = authenticate(username=username, password=password)
