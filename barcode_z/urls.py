@@ -9,4 +9,4 @@ urlpatterns = [
     path('admin', admin.site.urls),
     re_path(f'^{settings.MEDIA_URL.lstrip("/")}(?P<path>.*)$',
                     mediaserve, {'document_root': settings.MEDIA_ROOT})
-] 
+]

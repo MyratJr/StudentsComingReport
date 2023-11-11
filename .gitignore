@@ -1,3 +1,4 @@
-taze_venv
+venv
 media
 static
+.env
