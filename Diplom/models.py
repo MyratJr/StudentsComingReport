@@ -27,7 +27,7 @@ class Talyplar(models.Model):
         return str(self.at)
     
     class Meta:
-        ordering=['-id']
+        ordering=['at']
 
     def save(self, *args, **kwargs):
         EAN=barcode.get_barcode_class('Code128')
