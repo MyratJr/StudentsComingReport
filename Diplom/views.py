@@ -67,10 +67,6 @@ def gelmedikler_table(request,date,category):
     return render(request,'gelmedikler_table.html',context)
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-def barkod(request, pk, which):
-    if which==1: return render(request,'all_modal.html',{'a12':Talyplar.objects.get(id=pk)})
-
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @requires_csrf_token
 def loginuser(request):
     if request.method=='POST':

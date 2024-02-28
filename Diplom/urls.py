@@ -12,7 +12,6 @@ urlpatterns = [
     path('gija_galanlar_table/<str:date>/<str:category>',gija_galanlar_table,name='gija_galanlar_table'),
     path('gelmedikler',gelmedikler,name='gelmedikler'),
     path('gelmedikler_table/<str:date>/<str:category>',gelmedikler_table,name='gelmedikler_table'),
-    path('barkod/<int:pk>/<int:which>',barkod,name='barkod'),
     path('loginuser',loginuser,name='loginuser'),
     path('logout',loguser_out,name='logging_out'),
 ]

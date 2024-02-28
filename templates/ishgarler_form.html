@@ -24,6 +24,15 @@
         {% endfor %}
       </select>
     </div>
+      <div class="col-md-12 mb-3" style="margin-left: 8%;">
+      <label for="exampleFormControlSelect1" style="color:#093936;font-family:bold">Enjam belgisi</label>
+      <select style="font-size:1.5vw" class="aa" id="exampleFormControlSelect1" name="device">
+        <option>{{movie.device_id}}</option>
+        {% for i in a96 %}
+        <option>{{i.device_id}}</option>
+        {% endfor %}
+      </select>
+    </div>
   </div>
 
   <div class="modal-footer">

@@ -1,0 +1,8 @@
+# 172.16.0.76
+# Admin123
+# ssh root@172.16.0.76
+# tmux new -s a
+# tmux a
+# nano project/admin.py
+# ctrl x, y
+# ctrl b, d

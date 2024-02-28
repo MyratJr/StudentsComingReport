@@ -10,7 +10,7 @@ SECRET_KEY = SECRET_KEY
 
 DEBUG = False
 
-ALLOWED_HOSTS =ALLOWED_HOSTS
+ALLOWED_HOSTS = ALLOWED_HOSTS
 
 INSTALLED_APPS = [
     'diplom',
@@ -22,10 +22,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
+    'rest_framework', 
     'widget_tweaks',
-    'bootstrap_modal_forms',
-    'django_htmx'
+    # 'bootstrap_modal_forms',
+    'django_htmx',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,6 +77,14 @@ DATABASES = {
 }
 
 FILE_CHARSET = FILE_CHARSET
+
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

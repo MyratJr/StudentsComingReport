@@ -1,9 +1,6 @@
 from django.db import models
 from django.db.models import JSONField
-import barcode
-from barcode.writer import ImageWriter
-from io import BytesIO
-from django.core.files import File
+
 
 class Toparlar(models.Model):
     Topar_at=models.CharField(max_length=50)
@@ -15,13 +12,19 @@ class Toparlar(models.Model):
         ordering=['Topar_at']
 
 
+class DeviceId(models.Model):
+    username = models.CharField(max_length=100)
+    device_id = models.CharField(max_length=10485760, unique=True)
+
+    def __str__(self):
+        return self.device_id
+
 class Talyplar(models.Model):
     at=models.CharField(max_length=100)
+    device_id = models.OneToOneField(DeviceId, on_delete=models.CASCADE, null=True)
     topar=models.ForeignKey(Toparlar,on_delete=models.CASCADE,related_name='degisli')
     gelen_wagty = JSONField()
     ID_NO=models.IntegerField()
-    barkod_san=models.DecimalField(max_digits=13,decimal_places=0)
-    barkod_surat=models.ImageField(upload_to='barcode_img/',blank=True)
 
     def __str__(self):
         return str(self.at)
@@ -29,13 +32,6 @@ class Talyplar(models.Model):
     class Meta:
         ordering=['at']
 
-    def save(self, *args, **kwargs):
-        EAN=barcode.get_barcode_class('Code128')
-        ean=EAN(f'{self.barkod_san}',writer=ImageWriter())
-        buffer=BytesIO()
-        ean.write(buffer, options={"write_text": False})
-        self.barkod_surat.save(str(self.at)+'.jpg',File(buffer),save=False)
-        return super().save(*args, **kwargs)
 
 class Talyp_Gunler(models.Model):
     day=models.DateField()
