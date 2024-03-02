@@ -23,20 +23,24 @@ class UpdateStudentStatusView(APIView):
         device_id = serializer.validated_data['device_id']
 
         try:
-            student = Talyplar.objects.get(device_id=DeviceId.objects.get(device_id=device_id))
-            # if datetime.datetime.now().strftime('%H:%M')<="09:00":
-            student.gelen_wagty[datetime.datetime.now().strftime('%Y-%m-%d')]=datetime.datetime.now().strftime('%H:%M')
-            # else:
-                # print("salamalmlmlm")
-                # return Response("Not allowed report after 09:00 AM.", status=status.HTTP_400_BAD_REQUEST)
-            q=Talyp_Gunler.objects.filter(day=datetime.date.today()).count()
-            if q==0:
-                p=Talyp_Gunler(day=datetime.date.today())
-                p.save()
-            student.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            if datetime.datetime.now().strftime('%H:%M')<="12:00":
+                student = Talyplar.objects.get(device_id=DeviceId.objects.get(device_id=device_id))
+                if datetime.datetime.now().strftime('%Y-%m-%d') not in student.gelen_wagty:
+                    student.gelen_wagty[datetime.datetime.now().strftime('%Y-%m-%d')]=datetime.datetime.now().strftime('%H:%M')
+                    q=Talyp_Gunler.objects.filter(day=datetime.date.today()).count()
+                    if q==0:
+                        p=Talyp_Gunler(day=datetime.date.today())
+                        p.save()
+                    student.save()
+                else:
+                    return Response({"detail":"Siz ozal gatnaşygy tabşyrdyňyz"}, status=status.HTTP_400_BAD_REQUEST)
+                if datetime.datetime.now().strftime('%H:%M')>"09:00":
+                    return Response({"detail":"Siz gijä galdyňyz, giriş hasaba alyndy"})
+                return Response({"detail":"Üstünlikli gatnaşygy tabşyrdyňyz"}, status=status.HTTP_200_OK)
+            else:
+                return Response({"detail":"12:00-dan soň gatnaşyga rugsat berilmeýär"}, status=status.HTTP_400_BAD_REQUEST)
         except Talyplar.DoesNotExist:
-            return Response({"error": "Student not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Näsazlyk ýüze çykdy. Administratora ýüz tutuň"}, status=status.HTTP_404_NOT_FOUND)
 
 
 # @requires_csrf_token

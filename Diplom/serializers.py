@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from .models import DeviceId, Talyplar
-from django.shortcuts import get_object_or_404
+from rest_framework.exceptions import APIException
 
 
 class DeviceIdSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = DeviceId
         fields = ('username', 'device_id')
@@ -12,12 +13,21 @@ class DeviceIdSerializer(serializers.ModelSerializer):
         return DeviceId.objects.create(**validated_data)
     
 
+class ObjectNotFoundException(APIException):
+    status_code = 400
+
+
 class UpdateStudentStatusSerializer(serializers.Serializer):
     device_id = serializers.CharField(max_length=255)
 
     def validate(self, data):
         device_id = data.get('device_id')
-        device_id_query = get_object_or_404(DeviceId, device_id=device_id)
-        if not Talyplar.objects.filter(device_id=device_id_query).exists():
-            raise serializers.ValidationError("Invalid device_id: You not member of us.")
+        try:
+            device_id_query = DeviceId.objects.get(device_id=device_id)
+        except DeviceId.DoesNotExist:
+            raise ObjectNotFoundException("Enjamyňyz hasaba alynmadyk. Hasaba goşmak üçin ýokarky düwmä basyň")
+        try:
+            Talyplar.objects.get(device_id=device_id_query)
+        except Talyplar.DoesNotExist:
+            raise ObjectNotFoundException("Siz hasaba goşulmadyk. Administratora ýüz tutuň")
         return data
